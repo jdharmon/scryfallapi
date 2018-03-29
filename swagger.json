@@ -1,0 +1,713 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "v1",
+		"title": "Scryfall API"
+	},
+	"host": "api.scryfall.com",
+	"schemes": ["https"],
+	"paths": {
+		"/cards": {
+			"get": {
+				"tags": ["Cards"],
+				"operationId": "Cards_GetAll",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "page",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/card"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/cards/search": {
+			"get": {
+				"tags": ["Cards"],
+				"operationId": "Cards_Search",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "q",
+					"in": "query",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "unique",
+					"in": "query",
+					"required": false,
+					"type": "string",
+					"enum": ["cards",
+					"art",
+					"prints"]
+				},
+				{
+					"name": "order",
+					"in": "query",
+					"required": false,
+					"type": "string",
+					"enum": ["name",
+					"set",
+					"rarity",
+					"color",
+					"usd",
+					"tix",
+					"eur",
+					"cmc",
+					"power",
+					"toughness",
+					"edhrec",
+					"artist"]
+				},
+				{
+					"name": "dir",
+					"in": "query",
+					"required": false,
+					"type": "string",
+					"enum": ["auto",
+					"asc",
+					"desc"]
+				},
+				{
+					"name": "include_extras",
+					"in": "query",
+					"required": false,
+					"type": "boolean"
+				},
+				{
+					"name": "page",
+					"in": "query",
+					"required": false,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/list"
+						}
+					}
+				}
+			}
+		},
+		"/cards/named": {
+			"get": {
+				"tags": ["Cards"],
+				"operationId": "Cards_GetNamed",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "exact",
+					"in": "query",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "fuzzy",
+					"in": "query",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "set",
+					"in": "query",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "format",
+					"in": "query",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "face",
+					"in": "query",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "version",
+					"in": "query",
+					"required": false,
+					"type": "string"
+				},
+				{
+					"name": "pretty",
+					"in": "query",
+					"required": false,
+					"type": "boolean"
+				}],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/card"
+						}
+					}
+				}
+			}
+		},
+		"/cards/autocomplete": {
+			"get": {
+				"tags": ["Cards"],
+				"operationId": "Cards_Autocomplete",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "q",
+					"in": "query",
+					"required": false,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/catalog"
+						}
+					}
+				}
+			}
+		},
+		"/cards/random": {
+			"get": {
+				"tags": ["Cards"],
+				"operationId": "Cards_GetRandom",
+				"consumes": [],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/card"
+						}
+					}
+				}
+			}
+		},
+		"/cards/multiverse/{id}": {
+			"get": {
+				"tags": ["Cards"],
+				"operationId": "Cards_GetByMultiverseId",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/card"
+						}
+					}
+				}
+			}
+		},
+		"/cards/mtgo/{id}": {
+			"get": {
+				"tags": ["Cards"],
+				"operationId": "Cards_GetByMtgoId",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/card"
+						}
+					}
+				}
+			}
+		},
+		"/cards/{code}/{number}": {
+			"get": {
+				"tags": ["Cards"],
+				"operationId": "Cards_GetByCodeByNumber",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "code",
+					"in": "path",
+					"required": true,
+					"type": "string"
+				},
+				{
+					"name": "number",
+					"in": "path",
+					"required": true,
+					"type": "integer",
+					"format": "int32"
+				}],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/card"
+						}
+					}
+				}
+			}
+		},
+		"/cards/{id}": {
+			"get": {
+				"tags": ["Cards"],
+				"operationId": "Cards_GetById",
+				"consumes": [],
+				"produces": ["application/json"],
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"required": true,
+					"type": "string",
+					"format": "uuid"
+				}],
+				"responses": {
+					"200": {
+						"description": "Success",
+						"schema": {
+							"$ref": "#/definitions/card"
+						}
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"card": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"format": "uuid",
+					"type": "string"
+				},
+				"oracle_id": {
+					"format": "uuid",
+					"type": "string"
+				},
+				"multiverse_ids": {
+					"type": "array",
+					"items": {
+						"format": "int32",
+						"type": "integer"
+					}
+				},
+				"mtgo_id": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"mtgo_foil_id": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"uri": {
+					"type": "string"
+				},
+				"scryfall_uri": {
+					"type": "string"
+				},
+				"prints_search_uri": {
+					"type": "string"
+				},
+				"name": {
+					"type": "string"
+				},
+				"layout": {
+					"type": "string"
+				},
+				"cmc": {
+					"format": "double",
+					"type": "number"
+				},
+				"type_line": {
+					"type": "string"
+				},
+				"oracle_text": {
+					"type": "string"
+				},
+				"mana_cost": {
+					"type": "string"
+				},
+				"power": {
+					"type": "string"
+				},
+				"toughness": {
+					"type": "string"
+				},
+				"loyalty": {
+					"type": "string"
+				},
+				"life_modifier": {
+					"type": "string"
+				},
+				"hand_modifier": {
+					"type": "string"
+				},
+				"colors": {
+					"type": "array",
+					"items": {
+						"enum": ["W",
+						"U",
+						"B",
+						"R",
+						"G"],
+						"type": "string",
+						"x-ms-enum": {
+							"name": "color",
+							"modelAsString": false
+						}
+					}
+				},
+				"color_indicator": {
+					"type": "array",
+					"items": {
+						"enum": ["W",
+						"U",
+						"B",
+						"R",
+						"G"],
+						"type": "string",
+						"x-ms-enum": {
+							"name": "color",
+							"modelAsString": false
+						}
+					}
+				},
+				"color_identity": {
+					"type": "array",
+					"items": {
+						"enum": ["W",
+						"U",
+						"B",
+						"R",
+						"G"],
+						"type": "string",
+						"x-ms-enum": {
+							"name": "color",
+							"modelAsString": false
+						}
+					}
+				},
+				"all_parts": {
+					"type": "object"
+				},
+				"card_faces": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/card_face"
+					}
+				},
+				"legalities": {
+					"$ref": "#/definitions/legality"
+				},
+				"reserved": {
+					"type": "boolean"
+				},
+				"edhrec_rank": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"set": {
+					"type": "string"
+				},
+				"set_name": {
+					"type": "string"
+				},
+				"collector_number": {
+					"type": "string"
+				},
+				"set_search_uri": {
+					"type": "string"
+				},
+				"scryfall_set_uri": {
+					"type": "string"
+				},
+				"image_uris": {
+					"$ref": "#/definitions/image_uri"
+				},
+				"highres_image": {
+					"type": "boolean"
+				},
+				"reprint": {
+					"type": "boolean"
+				},
+				"digital": {
+					"type": "boolean"
+				},
+				"rarity": {
+					"enum": ["common",
+					"uncommon",
+					"rare",
+					"mythic"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "rarity",
+						"modelAsString": false
+					}
+				},
+				"flavor_text": {
+					"type": "string"
+				},
+				"artist": {
+					"type": "string"
+				},
+				"illustration_id": {
+					"format": "uuid",
+					"type": "string"
+				},
+				"frame": {
+					"type": "string"
+				},
+				"full_art": {
+					"type": "boolean"
+				},
+				"watermark": {
+					"type": "string"
+				},
+				"border_color": {
+					"enum": ["black",
+					"borderless",
+					"gold",
+					"silver",
+					"white"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "border_color",
+						"modelAsString": false
+					}
+				},
+				"story_spotlight_number": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"story_spotlight_uri": {
+					"type": "string"
+				},
+				"timeshifted": {
+					"type": "boolean"
+				},
+				"colorshifted": {
+					"type": "boolean"
+				},
+				"futureshifted": {
+					"type": "boolean"
+				}
+			}
+		},
+		"card_face": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string"
+				},
+				"mana_cost": {
+					"type": "string"
+				},
+				"type_line": {
+					"type": "string"
+				},
+				"oracle_text": {
+					"type": "string"
+				}
+			}
+		},
+		"legality": {
+			"type": "object",
+			"properties": {
+				"standard": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"future": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"frontier": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"modern": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"legacy": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"pauper": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"vintage": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"penny": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"commander": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"1v1": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"duel": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				},
+				"brawl": {
+					"enum": ["legal",
+					"not_legal"],
+					"type": "string",
+					"x-ms-enum": {
+						"name": "legal_status",
+						"modelAsString": false
+					}
+				}
+			}
+		},
+		"image_uri": {
+			"type": "object",
+			"properties": {
+				"small": {
+					"type": "string"
+				},
+				"normal": {
+					"type": "string"
+				},
+				"large": {
+					"type": "string"
+				},
+				"png": {
+					"type": "string"
+				},
+				"art_crop": {
+					"type": "string"
+				},
+				"border_crop": {
+					"type": "string"
+				}
+			}
+		},
+		"list": {
+			"type": "object",
+			"properties": {
+				"total_cards": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"has_more": {
+					"type": "boolean"
+				},
+				"next_page": {
+					"type": "string"
+				},
+				"data": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/card"
+					}
+				}
+			}
+		},
+		"catalog": {
+			"type": "object",
+			"properties": {
+				"total_items": {
+					"format": "int32",
+					"type": "integer"
+				},
+				"data": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}
