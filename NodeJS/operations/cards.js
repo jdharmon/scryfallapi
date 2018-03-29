@@ -23,7 +23,8 @@ const WebResource = msRest.WebResource;
  *
  *                      {Error}  err        - The Error object if an error occurred, null otherwise.
  *
- *                      {array} [result]   - The deserialized result object if an error did not occur.
+ *                      {object} [result]   - The deserialized result object if an error did not occur.
+ *                      See {@link CardList} for more information.
  *
  *                      {object} [request]  - The HTTP Request object if an error did not occur.
  *
@@ -113,21 +114,7 @@ function _getAll(options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = {
-            required: false,
-            serializedName: 'parsedResponse',
-            type: {
-              name: 'Sequence',
-              element: {
-                  required: false,
-                  serializedName: 'CardElementType',
-                  type: {
-                    name: 'Composite',
-                    className: 'Card'
-                  }
-              }
-            }
-          };
+          let resultMapper = new client.models['CardList']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -143,9 +130,9 @@ function _getAll(options, callback) {
 }
 
 /**
- * @param {object} [options] Optional Parameters.
+ * @param {string} q
  *
- * @param {string} [options.q]
+ * @param {object} [options] Optional Parameters.
  *
  * @param {string} [options.unique] Possible values include: 'cards', 'art',
  * 'prints'
@@ -170,13 +157,13 @@ function _getAll(options, callback) {
  *                      {Error}  err        - The Error object if an error occurred, null otherwise.
  *
  *                      {object} [result]   - The deserialized result object if an error did not occur.
- *                      See {@link List} for more information.
+ *                      See {@link CardList} for more information.
  *
  *                      {object} [request]  - The HTTP Request object if an error did not occur.
  *
  *                      {stream} [response] - The HTTP Response stream if an error did not occur.
  */
-function _search(options, callback) {
+function _search(q, options, callback) {
    /* jshint validthis: true */
   let client = this.client;
   if(!callback && typeof options === 'function') {
@@ -186,7 +173,6 @@ function _search(options, callback) {
   if (!callback) {
     throw new Error('callback cannot be null.');
   }
-  let q = (options && options.q !== undefined) ? options.q : undefined;
   let unique = (options && options.unique !== undefined) ? options.unique : undefined;
   let order = (options && options.order !== undefined) ? options.order : undefined;
   let dir = (options && options.dir !== undefined) ? options.dir : undefined;
@@ -194,8 +180,8 @@ function _search(options, callback) {
   let page = (options && options.page !== undefined) ? options.page : undefined;
   // Validate
   try {
-    if (q !== null && q !== undefined && typeof q.valueOf() !== 'string') {
-      throw new Error('q must be of type string.');
+    if (q === null || q === undefined || typeof q.valueOf() !== 'string') {
+      throw new Error('q cannot be null or undefined and it must be of type string.');
     }
     if (unique !== null && unique !== undefined && typeof unique.valueOf() !== 'string') {
       throw new Error('unique must be of type string.');
@@ -220,9 +206,7 @@ function _search(options, callback) {
   let baseUrl = this.client.baseUri;
   let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'cards/search';
   let queryParameters = [];
-  if (q !== null && q !== undefined) {
-    queryParameters.push('q=' + encodeURIComponent(q));
-  }
+  queryParameters.push('q=' + encodeURIComponent(q));
   if (unique !== null && unique !== undefined) {
     queryParameters.push('unique=' + encodeURIComponent(unique));
   }
@@ -295,7 +279,7 @@ function _search(options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['List']().mapper();
+          let resultMapper = new client.models['CardList']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -485,9 +469,9 @@ function _getNamed(options, callback) {
 }
 
 /**
- * @param {object} [options] Optional Parameters.
+ * @param {string} q
  *
- * @param {string} [options.q]
+ * @param {object} [options] Optional Parameters.
  *
  * @param {object} [options.customHeaders] Headers that will be added to the
  * request
@@ -505,7 +489,7 @@ function _getNamed(options, callback) {
  *
  *                      {stream} [response] - The HTTP Response stream if an error did not occur.
  */
-function _autocomplete(options, callback) {
+function _autocomplete(q, options, callback) {
    /* jshint validthis: true */
   let client = this.client;
   if(!callback && typeof options === 'function') {
@@ -515,11 +499,10 @@ function _autocomplete(options, callback) {
   if (!callback) {
     throw new Error('callback cannot be null.');
   }
-  let q = (options && options.q !== undefined) ? options.q : undefined;
   // Validate
   try {
-    if (q !== null && q !== undefined && typeof q.valueOf() !== 'string') {
-      throw new Error('q must be of type string.');
+    if (q === null || q === undefined || typeof q.valueOf() !== 'string') {
+      throw new Error('q cannot be null or undefined and it must be of type string.');
     }
   } catch (error) {
     return callback(error);
@@ -529,9 +512,7 @@ function _autocomplete(options, callback) {
   let baseUrl = this.client.baseUri;
   let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'cards/autocomplete';
   let queryParameters = [];
-  if (q !== null && q !== undefined) {
-    queryParameters.push('q=' + encodeURIComponent(q));
-  }
+  queryParameters.push('q=' + encodeURIComponent(q));
   if (queryParameters.length > 0) {
     requestUrl += '?' + queryParameters.join('&');
   }
@@ -1193,7 +1174,7 @@ class Cards {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<Array>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<CardList>} - The deserialized result object.
    *
    * @reject {Error} - The error object.
    */
@@ -1226,7 +1207,7 @@ class Cards {
    *
    * {Promise} A promise is returned
    *
-   *                      @resolve {Array} - The deserialized result object.
+   *                      @resolve {CardList} - The deserialized result object.
    *
    *                      @reject {Error} - The error object.
    *
@@ -1234,7 +1215,8 @@ class Cards {
    *
    *                      {Error}  err        - The Error object if an error occurred, null otherwise.
    *
-   *                      {array} [result]   - The deserialized result object if an error did not occur.
+   *                      {object} [result]   - The deserialized result object if an error did not occur.
+   *                      See {@link CardList} for more information.
    *
    *                      {object} [request]  - The HTTP Request object if an error did not occur.
    *
@@ -1261,9 +1243,9 @@ class Cards {
   }
 
   /**
-   * @param {object} [options] Optional Parameters.
+   * @param {string} q
    *
-   * @param {string} [options.q]
+   * @param {object} [options] Optional Parameters.
    *
    * @param {string} [options.unique] Possible values include: 'cards', 'art',
    * 'prints'
@@ -1283,15 +1265,15 @@ class Cards {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<List>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<CardList>} - The deserialized result object.
    *
    * @reject {Error} - The error object.
    */
-  searchWithHttpOperationResponse(options) {
+  searchWithHttpOperationResponse(q, options) {
     let client = this.client;
     let self = this;
     return new Promise((resolve, reject) => {
-      self._search(options, (err, result, request, response) => {
+      self._search(q, options, (err, result, request, response) => {
         let httpOperationResponse = new msRest.HttpOperationResponse(request, response);
         httpOperationResponse.body = result;
         if (err) { reject(err); }
@@ -1302,9 +1284,9 @@ class Cards {
   }
 
   /**
-   * @param {object} [options] Optional Parameters.
+   * @param {string} q
    *
-   * @param {string} [options.q]
+   * @param {object} [options] Optional Parameters.
    *
    * @param {string} [options.unique] Possible values include: 'cards', 'art',
    * 'prints'
@@ -1329,7 +1311,7 @@ class Cards {
    *
    * {Promise} A promise is returned
    *
-   *                      @resolve {List} - The deserialized result object.
+   *                      @resolve {CardList} - The deserialized result object.
    *
    *                      @reject {Error} - The error object.
    *
@@ -1338,13 +1320,13 @@ class Cards {
    *                      {Error}  err        - The Error object if an error occurred, null otherwise.
    *
    *                      {object} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link List} for more information.
+   *                      See {@link CardList} for more information.
    *
    *                      {object} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {stream} [response] - The HTTP Response stream if an error did not occur.
    */
-  search(options, optionalCallback) {
+  search(q, options, optionalCallback) {
     let client = this.client;
     let self = this;
     if (!optionalCallback && typeof options === 'function') {
@@ -1353,14 +1335,14 @@ class Cards {
     }
     if (!optionalCallback) {
       return new Promise((resolve, reject) => {
-        self._search(options, (err, result, request, response) => {
+        self._search(q, options, (err, result, request, response) => {
           if (err) { reject(err); }
           else { resolve(result); }
           return;
         });
       });
     } else {
-      return self._search(options, optionalCallback);
+      return self._search(q, options, optionalCallback);
     }
   }
 
@@ -1467,9 +1449,9 @@ class Cards {
   }
 
   /**
-   * @param {object} [options] Optional Parameters.
+   * @param {string} q
    *
-   * @param {string} [options.q]
+   * @param {object} [options] Optional Parameters.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1480,11 +1462,11 @@ class Cards {
    *
    * @reject {Error} - The error object.
    */
-  autocompleteWithHttpOperationResponse(options) {
+  autocompleteWithHttpOperationResponse(q, options) {
     let client = this.client;
     let self = this;
     return new Promise((resolve, reject) => {
-      self._autocomplete(options, (err, result, request, response) => {
+      self._autocomplete(q, options, (err, result, request, response) => {
         let httpOperationResponse = new msRest.HttpOperationResponse(request, response);
         httpOperationResponse.body = result;
         if (err) { reject(err); }
@@ -1495,9 +1477,9 @@ class Cards {
   }
 
   /**
-   * @param {object} [options] Optional Parameters.
+   * @param {string} q
    *
-   * @param {string} [options.q]
+   * @param {object} [options] Optional Parameters.
    *
    * @param {object} [options.customHeaders] Headers that will be added to the
    * request
@@ -1524,7 +1506,7 @@ class Cards {
    *
    *                      {stream} [response] - The HTTP Response stream if an error did not occur.
    */
-  autocomplete(options, optionalCallback) {
+  autocomplete(q, options, optionalCallback) {
     let client = this.client;
     let self = this;
     if (!optionalCallback && typeof options === 'function') {
@@ -1533,14 +1515,14 @@ class Cards {
     }
     if (!optionalCallback) {
       return new Promise((resolve, reject) => {
-        self._autocomplete(options, (err, result, request, response) => {
+        self._autocomplete(q, options, (err, result, request, response) => {
           if (err) { reject(err); }
           else { resolve(result); }
           return;
         });
       });
     } else {
-      return self._autocomplete(options, optionalCallback);
+      return self._autocomplete(q, options, optionalCallback);
     }
   }
 

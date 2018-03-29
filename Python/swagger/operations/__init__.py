@@ -5,8 +5,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from .sets_operations import SetsOperations
 from .cards_operations import CardsOperations
 
 __all__ = [
+    'SetsOperations',
     'CardsOperations',
 ]

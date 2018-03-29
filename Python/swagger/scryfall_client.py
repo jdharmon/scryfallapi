@@ -9,6 +9,7 @@ from msrest.service_client import ServiceClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from msrest.exceptions import HttpOperationError
+from .operations.sets_operations import SetsOperations
 from .operations.cards_operations import CardsOperations
 from . import models
 
@@ -38,6 +39,8 @@ class ScryfallClient(object):
     :ivar config: Configuration for client.
     :vartype config: ScryfallClientConfiguration
 
+    :ivar sets: Sets operations
+    :vartype sets: swagger.operations.SetsOperations
     :ivar cards: Cards operations
     :vartype cards: swagger.operations.CardsOperations
 
@@ -55,5 +58,7 @@ class ScryfallClient(object):
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
+        self.sets = SetsOperations(
+            self._client, self.config, self._serialize, self._deserialize)
         self.cards = CardsOperations(
             self._client, self.config, self._serialize, self._deserialize)

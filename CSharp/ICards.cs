@@ -32,7 +32,7 @@ namespace Scryfall.API
         /// <exception cref="Microsoft.Rest.SerializationException">
         /// Thrown when unable to deserialize the response
         /// </exception>
-        Task<HttpOperationResponse<IList<Card>>> GetAllWithHttpMessagesAsync(int? page = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CardList>> GetAllWithHttpMessagesAsync(int? page = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <param name='q'>
         /// </param>
         /// <param name='unique'>
@@ -61,7 +61,10 @@ namespace Scryfall.API
         /// <exception cref="Microsoft.Rest.SerializationException">
         /// Thrown when unable to deserialize the response
         /// </exception>
-        Task<HttpOperationResponse<List>> SearchWithHttpMessagesAsync(string q = default(string), string unique = default(string), string order = default(string), string dir = default(string), bool? includeExtras = default(bool?), int? page = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<HttpOperationResponse<CardList>> SearchWithHttpMessagesAsync(string q, string unique = default(string), string order = default(string), string dir = default(string), bool? includeExtras = default(bool?), int? page = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <param name='exact'>
         /// </param>
         /// <param name='fuzzy'>
@@ -103,7 +106,10 @@ namespace Scryfall.API
         /// <exception cref="Microsoft.Rest.SerializationException">
         /// Thrown when unable to deserialize the response
         /// </exception>
-        Task<HttpOperationResponse<Catalog>> AutocompleteWithHttpMessagesAsync(string q = default(string), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// Thrown when a required parameter is null
+        /// </exception>
+        Task<HttpOperationResponse<Catalog>> AutocompleteWithHttpMessagesAsync(string q, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
         /// </param>

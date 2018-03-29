@@ -30,6 +30,11 @@ namespace Scryfall.API
 
 
         /// <summary>
+        /// Gets the ISets.
+        /// </summary>
+        ISets Sets { get; }
+
+        /// <summary>
         /// Gets the ICards.
         /// </summary>
         ICards Cards { get; }

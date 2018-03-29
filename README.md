@@ -3,6 +3,7 @@
 [Scryfall](https://scryfall.com/docs/api) OpenAPI (Swagger) and clients generated from it.
 
 This is a work in progress. Only the following APIs have been implemented:
+* Sets
 * Cards
 
 ## Getting Started 

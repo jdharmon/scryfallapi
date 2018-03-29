@@ -29,6 +29,7 @@ export default class ScryfallClient extends ServiceClient {
   constructor(baseUri?: string, options?: ServiceClientOptions);
 
   // Operation groups
+  sets: operations.Sets;
   cards: operations.Cards;
 }
 

@@ -6,6 +6,8 @@
 
 'use strict';
 
+const models = require('./index');
+
 /**
  * Class representing a CardFace.
  */
@@ -13,9 +15,24 @@ class CardFace {
   /**
    * Create a CardFace.
    * @member {string} [name]
-   * @member {string} [manaCost]
    * @member {string} [typeLine]
    * @member {string} [oracleText]
+   * @member {string} [manaCost]
+   * @member {string} [colors] Possible values include: 'W', 'U', 'B', 'R', 'G'
+   * @member {string} [colorIndicator] Possible values include: 'W', 'U', 'B',
+   * 'R', 'G'
+   * @member {string} [power]
+   * @member {string} [toughness]
+   * @member {string} [loyalty]
+   * @member {string} [flavorText]
+   * @member {uuid} [illustrationId]
+   * @member {object} [imageUris]
+   * @member {string} [imageUris.small]
+   * @member {string} [imageUris.normal]
+   * @member {string} [imageUris.large]
+   * @member {string} [imageUris.png]
+   * @member {string} [imageUris.artCrop]
+   * @member {string} [imageUris.borderCrop]
    */
   constructor() {
   }
@@ -41,13 +58,6 @@ class CardFace {
               name: 'String'
             }
           },
-          manaCost: {
-            required: false,
-            serializedName: 'mana_cost',
-            type: {
-              name: 'String'
-            }
-          },
           typeLine: {
             required: false,
             serializedName: 'type_line',
@@ -60,6 +70,72 @@ class CardFace {
             serializedName: 'oracle_text',
             type: {
               name: 'String'
+            }
+          },
+          manaCost: {
+            required: false,
+            serializedName: 'mana_cost',
+            type: {
+              name: 'String'
+            }
+          },
+          colors: {
+            required: false,
+            serializedName: 'colors',
+            type: {
+              name: 'Enum',
+              allowedValues: [ 'W', 'U', 'B', 'R', 'G' ]
+            }
+          },
+          colorIndicator: {
+            required: false,
+            serializedName: 'color_indicator',
+            type: {
+              name: 'Enum',
+              allowedValues: [ 'W', 'U', 'B', 'R', 'G' ]
+            }
+          },
+          power: {
+            required: false,
+            serializedName: 'power',
+            type: {
+              name: 'String'
+            }
+          },
+          toughness: {
+            required: false,
+            serializedName: 'toughness',
+            type: {
+              name: 'String'
+            }
+          },
+          loyalty: {
+            required: false,
+            serializedName: 'loyalty',
+            type: {
+              name: 'String'
+            }
+          },
+          flavorText: {
+            required: false,
+            serializedName: 'flavor_text',
+            type: {
+              name: 'String'
+            }
+          },
+          illustrationId: {
+            required: false,
+            serializedName: 'illustration_id',
+            type: {
+              name: 'String'
+            }
+          },
+          imageUris: {
+            required: false,
+            serializedName: 'image_uris',
+            type: {
+              name: 'Composite',
+              className: 'ImageUri'
             }
           }
         }

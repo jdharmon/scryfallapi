@@ -41,9 +41,8 @@ class CardsOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: list or ClientRawResponse if raw=true
-        :rtype: list[~swagger.models.Card] or
-         ~msrest.pipeline.ClientRawResponse
+        :return: CardList or ClientRawResponse if raw=true
+        :rtype: ~swagger.models.CardList or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
@@ -71,7 +70,7 @@ class CardsOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('[Card]', response)
+            deserialized = self._deserialize('CardList', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -81,7 +80,7 @@ class CardsOperations(object):
     get_all.metadata = {'url': '/cards'}
 
     def search(
-            self, q=None, unique=None, order=None, dir=None, include_extras=None, page=None, custom_headers=None, raw=False, **operation_config):
+            self, q, unique=None, order=None, dir=None, include_extras=None, page=None, custom_headers=None, raw=False, **operation_config):
         """
 
         :param q:
@@ -103,8 +102,8 @@ class CardsOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: List or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.List or ~msrest.pipeline.ClientRawResponse
+        :return: CardList or ClientRawResponse if raw=true
+        :rtype: ~swagger.models.CardList or ~msrest.pipeline.ClientRawResponse
         :raises:
          :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
         """
@@ -113,8 +112,7 @@ class CardsOperations(object):
 
         # Construct parameters
         query_parameters = {}
-        if q is not None:
-            query_parameters['q'] = self._serialize.query("q", q, 'str')
+        query_parameters['q'] = self._serialize.query("q", q, 'str')
         if unique is not None:
             query_parameters['unique'] = self._serialize.query("unique", unique, 'str')
         if order is not None:
@@ -142,7 +140,7 @@ class CardsOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('List', response)
+            deserialized = self._deserialize('CardList', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -225,7 +223,7 @@ class CardsOperations(object):
     get_named.metadata = {'url': '/cards/named'}
 
     def autocomplete(
-            self, q=None, custom_headers=None, raw=False, **operation_config):
+            self, q, custom_headers=None, raw=False, **operation_config):
         """
 
         :param q:
@@ -245,8 +243,7 @@ class CardsOperations(object):
 
         # Construct parameters
         query_parameters = {}
-        if q is not None:
-            query_parameters['q'] = self._serialize.query("q", q, 'str')
+        query_parameters['q'] = self._serialize.query("q", q, 'str')
 
         # Construct headers
         header_parameters = {}

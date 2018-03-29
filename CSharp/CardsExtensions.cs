@@ -7,8 +7,6 @@
 namespace Scryfall.API
 {
     using Models;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -22,7 +20,7 @@ namespace Scryfall.API
             /// </param>
             /// <param name='page'>
             /// </param>
-            public static IList<Card> GetAll(this ICards operations, int? page = default(int?))
+            public static CardList GetAll(this ICards operations, int? page = default(int?))
             {
                 return operations.GetAllAsync(page).GetAwaiter().GetResult();
             }
@@ -35,7 +33,7 @@ namespace Scryfall.API
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<Card>> GetAllAsync(this ICards operations, int? page = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<CardList> GetAllAsync(this ICards operations, int? page = default(int?), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetAllWithHttpMessagesAsync(page, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -62,7 +60,7 @@ namespace Scryfall.API
             /// </param>
             /// <param name='page'>
             /// </param>
-            public static List Search(this ICards operations, string q = default(string), string unique = default(string), string order = default(string), string dir = default(string), bool? includeExtras = default(bool?), int? page = default(int?))
+            public static CardList Search(this ICards operations, string q, string unique = default(string), string order = default(string), string dir = default(string), bool? includeExtras = default(bool?), int? page = default(int?))
             {
                 return operations.SearchAsync(q, unique, order, dir, includeExtras, page).GetAwaiter().GetResult();
             }
@@ -89,7 +87,7 @@ namespace Scryfall.API
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<List> SearchAsync(this ICards operations, string q = default(string), string unique = default(string), string order = default(string), string dir = default(string), bool? includeExtras = default(bool?), int? page = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<CardList> SearchAsync(this ICards operations, string q, string unique = default(string), string order = default(string), string dir = default(string), bool? includeExtras = default(bool?), int? page = default(int?), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.SearchWithHttpMessagesAsync(q, unique, order, dir, includeExtras, page, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -152,7 +150,7 @@ namespace Scryfall.API
             /// </param>
             /// <param name='q'>
             /// </param>
-            public static Catalog Autocomplete(this ICards operations, string q = default(string))
+            public static Catalog Autocomplete(this ICards operations, string q)
             {
                 return operations.AutocompleteAsync(q).GetAwaiter().GetResult();
             }
@@ -165,7 +163,7 @@ namespace Scryfall.API
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<Catalog> AutocompleteAsync(this ICards operations, string q = default(string), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<Catalog> AutocompleteAsync(this ICards operations, string q, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.AutocompleteWithHttpMessagesAsync(q, null, cancellationToken).ConfigureAwait(false))
                 {

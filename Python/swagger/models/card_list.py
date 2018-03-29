@@ -8,8 +8,8 @@
 from msrest.serialization import Model
 
 
-class List(Model):
-    """List.
+class CardList(Model):
+    """CardList.
 
     :param total_cards:
     :type total_cards: int
@@ -29,7 +29,7 @@ class List(Model):
     }
 
     def __init__(self, total_cards=None, has_more=None, next_page=None, data=None):
-        super(List, self).__init__()
+        super(CardList, self).__init__()
         self.total_cards = total_cards
         self.has_more = has_more
         self.next_page = next_page

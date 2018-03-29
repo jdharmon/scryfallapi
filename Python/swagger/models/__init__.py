@@ -5,28 +5,38 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
+from .related_cards import RelatedCards
+from .image_uri import ImageUri
 from .card_face import CardFace
 from .legality import Legality
-from .image_uri import ImageUri
 from .card import Card
-from .list import List
 from .catalog import Catalog
+from .set import Set
+from .card_list import CardList
+from .set_list import SetList
 from .scryfall_client_enums import (
-    Color,
+    Layouts,
+    Colors,
     LegalStatus,
     Rarity,
-    BorderColor,
+    BorderColors,
+    SetTypes,
 )
 
 __all__ = [
+    'RelatedCards',
+    'ImageUri',
     'CardFace',
     'Legality',
-    'ImageUri',
     'Card',
-    'List',
     'Catalog',
-    'Color',
+    'Set',
+    'CardList',
+    'SetList',
+    'Layouts',
+    'Colors',
     'LegalStatus',
     'Rarity',
-    'BorderColor',
+    'BorderColors',
+    'SetTypes',
 ]

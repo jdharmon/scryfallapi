@@ -10,9 +10,12 @@
 
 'use strict';
 
+exports.RelatedCards = require('./relatedCards');
+exports.ImageUri = require('./imageUri');
 exports.CardFace = require('./cardFace');
 exports.Legality = require('./legality');
-exports.ImageUri = require('./imageUri');
 exports.Card = require('./card');
-exports.List = require('./list');
 exports.Catalog = require('./catalog');
+exports.Set = require('./set');
+exports.CardList = require('./cardList');
+exports.SetList = require('./setList');

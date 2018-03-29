@@ -22,12 +22,24 @@ namespace Scryfall.API.Models
         /// <summary>
         /// Initializes a new instance of the CardFace class.
         /// </summary>
-        public CardFace(string name = default(string), string manaCost = default(string), string typeLine = default(string), string oracleText = default(string))
+        /// <param name="colors">Possible values include: 'W', 'U', 'B', 'R',
+        /// 'G'</param>
+        /// <param name="colorIndicator">Possible values include: 'W', 'U',
+        /// 'B', 'R', 'G'</param>
+        public CardFace(string name = default(string), string typeLine = default(string), string oracleText = default(string), string manaCost = default(string), Colors? colors = default(Colors?), Colors? colorIndicator = default(Colors?), string power = default(string), string toughness = default(string), string loyalty = default(string), string flavorText = default(string), System.Guid? illustrationId = default(System.Guid?), ImageUri imageUris = default(ImageUri))
         {
             Name = name;
-            ManaCost = manaCost;
             TypeLine = typeLine;
             OracleText = oracleText;
+            ManaCost = manaCost;
+            Colors = colors;
+            ColorIndicator = colorIndicator;
+            Power = power;
+            Toughness = toughness;
+            Loyalty = loyalty;
+            FlavorText = flavorText;
+            IllustrationId = illustrationId;
+            ImageUris = imageUris;
             CustomInit();
         }
 
@@ -43,11 +55,6 @@ namespace Scryfall.API.Models
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "mana_cost")]
-        public string ManaCost { get; set; }
-
-        /// <summary>
-        /// </summary>
         [JsonProperty(PropertyName = "type_line")]
         public string TypeLine { get; set; }
 
@@ -55,6 +62,53 @@ namespace Scryfall.API.Models
         /// </summary>
         [JsonProperty(PropertyName = "oracle_text")]
         public string OracleText { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "mana_cost")]
+        public string ManaCost { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'W', 'U', 'B', 'R', 'G'
+        /// </summary>
+        [JsonProperty(PropertyName = "colors")]
+        public Colors? Colors { get; set; }
+
+        /// <summary>
+        /// Gets or sets possible values include: 'W', 'U', 'B', 'R', 'G'
+        /// </summary>
+        [JsonProperty(PropertyName = "color_indicator")]
+        public Colors? ColorIndicator { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "power")]
+        public string Power { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "toughness")]
+        public string Toughness { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "loyalty")]
+        public string Loyalty { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "flavor_text")]
+        public string FlavorText { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "illustration_id")]
+        public System.Guid? IllustrationId { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "image_uris")]
+        public ImageUri ImageUris { get; set; }
 
     }
 }

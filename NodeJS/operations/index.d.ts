@@ -10,6 +10,113 @@ import * as models from '../models';
 
 /**
  * @class
+ * Sets
+ * __NOTE__: An instance of this class is automatically created for an
+ * instance of the ScryfallClient.
+ */
+export interface Sets {
+
+
+    /**
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<SetList>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getAllWithHttpOperationResponse(options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.SetList>>;
+
+    /**
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {SetList} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {SetList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link SetList} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    getAll(options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.SetList>;
+    getAll(callback: ServiceCallback<models.SetList>): void;
+    getAll(options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.SetList>): void;
+
+
+    /**
+     * @param {string} code
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @returns {Promise} A promise is returned
+     *
+     * @resolve {HttpOperationResponse<Set>} - The deserialized result object.
+     *
+     * @reject {Error|ServiceError} - The error object.
+     */
+    getByCodeWithHttpOperationResponse(code: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.Set>>;
+
+    /**
+     * @param {string} code
+     *
+     * @param {object} [options] Optional Parameters.
+     *
+     * @param {object} [options.customHeaders] Headers that will be added to the
+     * request
+     *
+     * @param {ServiceCallback} [optionalCallback] - The optional callback.
+     *
+     * @returns {ServiceCallback|Promise} If a callback was passed as the last
+     * parameter then it returns the callback else returns a Promise.
+     *
+     * {Promise} A promise is returned.
+     *
+     *                      @resolve {Set} - The deserialized result object.
+     *
+     *                      @reject {Error|ServiceError} - The error object.
+     *
+     * {ServiceCallback} optionalCallback(err, result, request, response)
+     *
+     *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
+     *
+     *                      {Set} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link Set} for more information.
+     *
+     *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
+     *
+     *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
+     */
+    getByCode(code: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.Set>;
+    getByCode(code: string, callback: ServiceCallback<models.Set>): void;
+    getByCode(code: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.Set>): void;
+}
+
+/**
+ * @class
  * Cards
  * __NOTE__: An instance of this class is automatically created for an
  * instance of the ScryfallClient.
@@ -27,11 +134,11 @@ export interface Cards {
      *
      * @returns {Promise} A promise is returned
      *
-     * @resolve {HttpOperationResponse<Array>} - The deserialized result object.
+     * @resolve {HttpOperationResponse<CardList>} - The deserialized result object.
      *
      * @reject {Error|ServiceError} - The error object.
      */
-    getAllWithHttpOperationResponse(options?: { page? : number, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.Card[]>>;
+    getAllWithHttpOperationResponse(options?: { page? : number, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.CardList>>;
 
     /**
      * @param {object} [options] Optional Parameters.
@@ -48,7 +155,7 @@ export interface Cards {
      *
      * {Promise} A promise is returned.
      *
-     *                      @resolve {Array} - The deserialized result object.
+     *                      @resolve {CardList} - The deserialized result object.
      *
      *                      @reject {Error|ServiceError} - The error object.
      *
@@ -56,21 +163,22 @@ export interface Cards {
      *
      *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
      *
-     *                      {Array} [result]   - The deserialized result object if an error did not occur.
+     *                      {CardList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link CardList} for more information.
      *
      *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
      *
      *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
      */
-    getAll(options?: { page? : number, customHeaders? : { [headerName: string]: string; } }): Promise<models.Card[]>;
-    getAll(callback: ServiceCallback<models.Card[]>): void;
-    getAll(options: { page? : number, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.Card[]>): void;
+    getAll(options?: { page? : number, customHeaders? : { [headerName: string]: string; } }): Promise<models.CardList>;
+    getAll(callback: ServiceCallback<models.CardList>): void;
+    getAll(options: { page? : number, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.CardList>): void;
 
 
     /**
-     * @param {object} [options] Optional Parameters.
+     * @param {string} q
      *
-     * @param {string} [options.q]
+     * @param {object} [options] Optional Parameters.
      *
      * @param {string} [options.unique] Possible values include: 'cards', 'art',
      * 'prints'
@@ -90,16 +198,16 @@ export interface Cards {
      *
      * @returns {Promise} A promise is returned
      *
-     * @resolve {HttpOperationResponse<List>} - The deserialized result object.
+     * @resolve {HttpOperationResponse<CardList>} - The deserialized result object.
      *
      * @reject {Error|ServiceError} - The error object.
      */
-    searchWithHttpOperationResponse(options?: { q? : string, unique? : string, order? : string, dir? : string, includeExtras? : boolean, page? : number, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.List>>;
+    searchWithHttpOperationResponse(q: string, options?: { unique? : string, order? : string, dir? : string, includeExtras? : boolean, page? : number, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.CardList>>;
 
     /**
-     * @param {object} [options] Optional Parameters.
+     * @param {string} q
      *
-     * @param {string} [options.q]
+     * @param {object} [options] Optional Parameters.
      *
      * @param {string} [options.unique] Possible values include: 'cards', 'art',
      * 'prints'
@@ -124,7 +232,7 @@ export interface Cards {
      *
      * {Promise} A promise is returned.
      *
-     *                      @resolve {List} - The deserialized result object.
+     *                      @resolve {CardList} - The deserialized result object.
      *
      *                      @reject {Error|ServiceError} - The error object.
      *
@@ -132,16 +240,16 @@ export interface Cards {
      *
      *                      {Error|ServiceError}  err        - The Error object if an error occurred, null otherwise.
      *
-     *                      {List} [result]   - The deserialized result object if an error did not occur.
-     *                      See {@link List} for more information.
+     *                      {CardList} [result]   - The deserialized result object if an error did not occur.
+     *                      See {@link CardList} for more information.
      *
      *                      {WebResource} [request]  - The HTTP Request object if an error did not occur.
      *
      *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
      */
-    search(options?: { q? : string, unique? : string, order? : string, dir? : string, includeExtras? : boolean, page? : number, customHeaders? : { [headerName: string]: string; } }): Promise<models.List>;
-    search(callback: ServiceCallback<models.List>): void;
-    search(options: { q? : string, unique? : string, order? : string, dir? : string, includeExtras? : boolean, page? : number, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.List>): void;
+    search(q: string, options?: { unique? : string, order? : string, dir? : string, includeExtras? : boolean, page? : number, customHeaders? : { [headerName: string]: string; } }): Promise<models.CardList>;
+    search(q: string, callback: ServiceCallback<models.CardList>): void;
+    search(q: string, options: { unique? : string, order? : string, dir? : string, includeExtras? : boolean, page? : number, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.CardList>): void;
 
 
     /**
@@ -220,9 +328,9 @@ export interface Cards {
 
 
     /**
-     * @param {object} [options] Optional Parameters.
+     * @param {string} q
      *
-     * @param {string} [options.q]
+     * @param {object} [options] Optional Parameters.
      *
      * @param {object} [options.customHeaders] Headers that will be added to the
      * request
@@ -233,12 +341,12 @@ export interface Cards {
      *
      * @reject {Error|ServiceError} - The error object.
      */
-    autocompleteWithHttpOperationResponse(options?: { q? : string, customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.Catalog>>;
+    autocompleteWithHttpOperationResponse(q: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<HttpOperationResponse<models.Catalog>>;
 
     /**
-     * @param {object} [options] Optional Parameters.
+     * @param {string} q
      *
-     * @param {string} [options.q]
+     * @param {object} [options] Optional Parameters.
      *
      * @param {object} [options.customHeaders] Headers that will be added to the
      * request
@@ -265,9 +373,9 @@ export interface Cards {
      *
      *                      {http.IncomingMessage} [response] - The HTTP Response stream if an error did not occur.
      */
-    autocomplete(options?: { q? : string, customHeaders? : { [headerName: string]: string; } }): Promise<models.Catalog>;
-    autocomplete(callback: ServiceCallback<models.Catalog>): void;
-    autocomplete(options: { q? : string, customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.Catalog>): void;
+    autocomplete(q: string, options?: { customHeaders? : { [headerName: string]: string; } }): Promise<models.Catalog>;
+    autocomplete(q: string, callback: ServiceCallback<models.Catalog>): void;
+    autocomplete(q: string, options: { customHeaders? : { [headerName: string]: string; } }, callback: ServiceCallback<models.Catalog>): void;
 
 
     /**

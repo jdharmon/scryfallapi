@@ -33,6 +33,11 @@ namespace Scryfall.API
         public JsonSerializerSettings DeserializationSettings { get; private set; }
 
         /// <summary>
+        /// Gets the ISets.
+        /// </summary>
+        public virtual ISets Sets { get; private set; }
+
+        /// <summary>
         /// Gets the ICards.
         /// </summary>
         public virtual ICards Cards { get; private set; }
@@ -116,6 +121,7 @@ namespace Scryfall.API
         /// </summary>
         private void Initialize()
         {
+            Sets = new Sets(this);
             Cards = new Cards(this);
             BaseUri = new System.Uri("https://api.scryfall.com");
             SerializationSettings = new JsonSerializerSettings

@@ -12,10 +12,10 @@ namespace Scryfall.API.Models
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// Defines values for Color.
+    /// Defines values for Colors.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum Color
+    public enum Colors
     {
         [EnumMember(Value = "W")]
         W,
@@ -28,45 +28,45 @@ namespace Scryfall.API.Models
         [EnumMember(Value = "G")]
         G
     }
-    internal static class ColorEnumExtension
+    internal static class ColorsEnumExtension
     {
-        internal static string ToSerializedValue(this Color? value)
+        internal static string ToSerializedValue(this Colors? value)
         {
-            return value == null ? null : ((Color)value).ToSerializedValue();
+            return value == null ? null : ((Colors)value).ToSerializedValue();
         }
 
-        internal static string ToSerializedValue(this Color value)
+        internal static string ToSerializedValue(this Colors value)
         {
             switch( value )
             {
-                case Color.W:
+                case Colors.W:
                     return "W";
-                case Color.U:
+                case Colors.U:
                     return "U";
-                case Color.B:
+                case Colors.B:
                     return "B";
-                case Color.R:
+                case Colors.R:
                     return "R";
-                case Color.G:
+                case Colors.G:
                     return "G";
             }
             return null;
         }
 
-        internal static Color? ParseColor(this string value)
+        internal static Colors? ParseColors(this string value)
         {
             switch( value )
             {
                 case "W":
-                    return Color.W;
+                    return Colors.W;
                 case "U":
-                    return Color.U;
+                    return Colors.U;
                 case "B":
-                    return Color.B;
+                    return Colors.B;
                 case "R":
-                    return Color.R;
+                    return Colors.R;
                 case "G":
-                    return Color.G;
+                    return Colors.G;
             }
             return null;
         }

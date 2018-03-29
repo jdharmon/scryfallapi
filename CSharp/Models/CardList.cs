@@ -11,20 +11,20 @@ namespace Scryfall.API.Models
     using System.Collections.Generic;
     using System.Linq;
 
-    public partial class List
+    public partial class CardList
     {
         /// <summary>
-        /// Initializes a new instance of the List class.
+        /// Initializes a new instance of the CardList class.
         /// </summary>
-        public List()
+        public CardList()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the List class.
+        /// Initializes a new instance of the CardList class.
         /// </summary>
-        public List(int? totalCards = default(int?), bool? hasMore = default(bool?), string nextPage = default(string), IList<Card> data = default(IList<Card>))
+        public CardList(int? totalCards = default(int?), bool? hasMore = default(bool?), string nextPage = default(string), IList<Card> data = default(IList<Card>))
         {
             TotalCards = totalCards;
             HasMore = hasMore;

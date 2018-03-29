@@ -41,6 +41,7 @@ class ScryfallClient extends ServiceClient {
 
     let packageInfo = this.getPackageJsonInfo(__dirname);
     this.addUserAgentInfo(`${packageInfo.name}/${packageInfo.version}`);
+    this.sets = new operations.Sets(this);
     this.cards = new operations.Cards(this);
     this.models = models;
     msRest.addSerializationMixin(this);

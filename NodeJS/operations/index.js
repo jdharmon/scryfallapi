@@ -10,4 +10,5 @@
 
 'use strict';
 
+exports.Sets = require('./sets');
 exports.Cards = require('./cards');

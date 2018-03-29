@@ -12,10 +12,10 @@ namespace Scryfall.API.Models
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// Defines values for BorderColor.
+    /// Defines values for BorderColors.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum BorderColor
+    public enum BorderColors
     {
         [EnumMember(Value = "black")]
         Black,
@@ -28,45 +28,45 @@ namespace Scryfall.API.Models
         [EnumMember(Value = "white")]
         White
     }
-    internal static class BorderColorEnumExtension
+    internal static class BorderColorsEnumExtension
     {
-        internal static string ToSerializedValue(this BorderColor? value)
+        internal static string ToSerializedValue(this BorderColors? value)
         {
-            return value == null ? null : ((BorderColor)value).ToSerializedValue();
+            return value == null ? null : ((BorderColors)value).ToSerializedValue();
         }
 
-        internal static string ToSerializedValue(this BorderColor value)
+        internal static string ToSerializedValue(this BorderColors value)
         {
             switch( value )
             {
-                case BorderColor.Black:
+                case BorderColors.Black:
                     return "black";
-                case BorderColor.Borderless:
+                case BorderColors.Borderless:
                     return "borderless";
-                case BorderColor.Gold:
+                case BorderColors.Gold:
                     return "gold";
-                case BorderColor.Silver:
+                case BorderColors.Silver:
                     return "silver";
-                case BorderColor.White:
+                case BorderColors.White:
                     return "white";
             }
             return null;
         }
 
-        internal static BorderColor? ParseBorderColor(this string value)
+        internal static BorderColors? ParseBorderColors(this string value)
         {
             switch( value )
             {
                 case "black":
-                    return BorderColor.Black;
+                    return BorderColors.Black;
                 case "borderless":
-                    return BorderColor.Borderless;
+                    return BorderColors.Borderless;
                 case "gold":
-                    return BorderColor.Gold;
+                    return BorderColors.Gold;
                 case "silver":
-                    return BorderColor.Silver;
+                    return BorderColors.Silver;
                 case "white":
-                    return BorderColor.White;
+                    return BorderColors.White;
             }
             return null;
         }

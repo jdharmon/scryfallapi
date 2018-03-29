@@ -8,7 +8,25 @@
 from enum import Enum
 
 
-class Color(Enum):
+class Layouts(Enum):
+
+    normal = "normal"
+    split = "split"
+    transform = "transform"
+    meld = "meld"
+    leveler = "leveler"
+    saga = "saga"
+    planar = "planar"
+    scheme = "scheme"
+    vanguard = "vanguard"
+    token = "token"
+    double_faced_token = "double_faced_token"
+    emblem = "emblem"
+    augment = "augment"
+    host = "host"
+
+
+class Colors(Enum):
 
     w = "W"
     u = "U"
@@ -31,10 +49,34 @@ class Rarity(Enum):
     mythic = "mythic"
 
 
-class BorderColor(Enum):
+class BorderColors(Enum):
 
     black = "black"
     borderless = "borderless"
     gold = "gold"
     silver = "silver"
     white = "white"
+
+
+class SetTypes(Enum):
+
+    core = "core"
+    expansion = "expansion"
+    masters = "masters"
+    masterpiece = "masterpiece"
+    from_the_vault = "from_the_vault"
+    spellbook = "spellbook"
+    premium_deck = "premium_deck"
+    duel_deck = "duel_deck"
+    commander = "commander"
+    planechase = "planechase"
+    conspiracy = "conspiracy"
+    archenemy = "archenemy"
+    vanguard = "vanguard"
+    funny = "funny"
+    starter = "starter"
+    box = "box"
+    promo = "promo"
+    token = "token"
+    memorabilia = "memorabilia"
+    treasure_chest = "treasure_chest"

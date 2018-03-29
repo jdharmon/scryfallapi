@@ -9,11 +9,11 @@
 const models = require('./index');
 
 /**
- * Class representing a List.
+ * Class representing a CardList.
  */
-class List {
+class CardList {
   /**
-   * Create a List.
+   * Create a CardList.
    * @member {number} [totalCards]
    * @member {boolean} [hasMore]
    * @member {string} [nextPage]
@@ -23,18 +23,18 @@ class List {
   }
 
   /**
-   * Defines the metadata of List
+   * Defines the metadata of CardList
    *
-   * @returns {object} metadata of List
+   * @returns {object} metadata of CardList
    *
    */
   mapper() {
     return {
       required: false,
-      serializedName: 'list',
+      serializedName: 'card_list',
       type: {
         name: 'Composite',
-        className: 'List',
+        className: 'CardList',
         modelProperties: {
           totalCards: {
             required: false,
@@ -78,4 +78,4 @@ class List {
   }
 }
 
-module.exports = List;
+module.exports = CardList;

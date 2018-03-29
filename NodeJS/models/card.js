@@ -22,8 +22,11 @@ class Card {
    * @member {string} [uri]
    * @member {string} [scryfallUri]
    * @member {string} [printsSearchUri]
+   * @member {string} [rulingsUri]
    * @member {string} [name]
-   * @member {string} [layout]
+   * @member {string} [layout] Possible values include: 'normal', 'split',
+   * 'transform', 'meld', 'leveler', 'saga', 'planar', 'scheme', 'vanguard',
+   * 'token', 'double_faced_token', 'emblem', 'augment', 'host'
    * @member {number} [cmc]
    * @member {string} [typeLine]
    * @member {string} [oracleText]
@@ -37,6 +40,9 @@ class Card {
    * @member {array} [colorIndicator]
    * @member {array} [colorIdentity]
    * @member {object} [allParts]
+   * @member {uuid} [allParts.id]
+   * @member {string} [allParts.name]
+   * @member {string} [allParts.uri]
    * @member {array} [cardFaces]
    * @member {object} [legalities]
    * @member {string} [legalities.standard] Possible values include: 'legal',
@@ -95,6 +101,8 @@ class Card {
    * @member {boolean} [timeshifted]
    * @member {boolean} [colorshifted]
    * @member {boolean} [futureshifted]
+   * @member {object} [purchaseUris]
+   * @member {object} [relatedUris]
    */
   constructor() {
   }
@@ -176,6 +184,13 @@ class Card {
               name: 'String'
             }
           },
+          rulingsUri: {
+            required: false,
+            serializedName: 'rulings_uri',
+            type: {
+              name: 'String'
+            }
+          },
           name: {
             required: false,
             serializedName: 'name',
@@ -187,7 +202,8 @@ class Card {
             required: false,
             serializedName: 'layout',
             type: {
-              name: 'String'
+              name: 'Enum',
+              allowedValues: [ 'normal', 'split', 'transform', 'meld', 'leveler', 'saga', 'planar', 'scheme', 'vanguard', 'token', 'double_faced_token', 'emblem', 'augment', 'host' ]
             }
           },
           cmc: {
@@ -260,7 +276,7 @@ class Card {
               name: 'Sequence',
               element: {
                   required: false,
-                  serializedName: 'ColorElementType',
+                  serializedName: 'ColorsElementType',
                   type: {
                     name: 'Enum',
                     allowedValues: [ 'W', 'U', 'B', 'R', 'G' ]
@@ -275,7 +291,7 @@ class Card {
               name: 'Sequence',
               element: {
                   required: false,
-                  serializedName: 'ColorElementType',
+                  serializedName: 'ColorsElementType',
                   type: {
                     name: 'Enum',
                     allowedValues: [ 'W', 'U', 'B', 'R', 'G' ]
@@ -290,7 +306,7 @@ class Card {
               name: 'Sequence',
               element: {
                   required: false,
-                  serializedName: 'ColorElementType',
+                  serializedName: 'ColorsElementType',
                   type: {
                     name: 'Enum',
                     allowedValues: [ 'W', 'U', 'B', 'R', 'G' ]
@@ -302,7 +318,8 @@ class Card {
             required: false,
             serializedName: 'all_parts',
             type: {
-              name: 'Object'
+              name: 'Composite',
+              className: 'RelatedCards'
             }
           },
           cardFaces: {
@@ -497,6 +514,34 @@ class Card {
             serializedName: 'futureshifted',
             type: {
               name: 'Boolean'
+            }
+          },
+          purchaseUris: {
+            required: false,
+            serializedName: 'purchase_uris',
+            type: {
+              name: 'Dictionary',
+              value: {
+                  required: false,
+                  serializedName: 'StringElementType',
+                  type: {
+                    name: 'String'
+                  }
+              }
+            }
+          },
+          relatedUris: {
+            required: false,
+            serializedName: 'related_uris',
+            type: {
+              name: 'Dictionary',
+              value: {
+                  required: false,
+                  serializedName: 'StringElementType',
+                  type: {
+                    name: 'String'
+                  }
+              }
             }
           }
         }

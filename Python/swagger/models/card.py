@@ -27,10 +27,14 @@ class Card(Model):
     :type scryfall_uri: str
     :param prints_search_uri:
     :type prints_search_uri: str
+    :param rulings_uri:
+    :type rulings_uri: str
     :param name:
     :type name: str
-    :param layout:
-    :type layout: str
+    :param layout: Possible values include: 'normal', 'split', 'transform',
+     'meld', 'leveler', 'saga', 'planar', 'scheme', 'vanguard', 'token',
+     'double_faced_token', 'emblem', 'augment', 'host'
+    :type layout: str or ~swagger.models.Layouts
     :param cmc:
     :type cmc: float
     :param type_line:
@@ -50,13 +54,13 @@ class Card(Model):
     :param hand_modifier:
     :type hand_modifier: str
     :param colors:
-    :type colors: list[str or ~swagger.models.Color]
+    :type colors: list[str or ~swagger.models.Colors]
     :param color_indicator:
-    :type color_indicator: list[str or ~swagger.models.Color]
+    :type color_indicator: list[str or ~swagger.models.Colors]
     :param color_identity:
-    :type color_identity: list[str or ~swagger.models.Color]
+    :type color_identity: list[str or ~swagger.models.Colors]
     :param all_parts:
-    :type all_parts: object
+    :type all_parts: ~swagger.models.RelatedCards
     :param card_faces:
     :type card_faces: list[~swagger.models.CardFace]
     :param legalities:
@@ -100,7 +104,7 @@ class Card(Model):
     :type watermark: str
     :param border_color: Possible values include: 'black', 'borderless',
      'gold', 'silver', 'white'
-    :type border_color: str or ~swagger.models.BorderColor
+    :type border_color: str or ~swagger.models.BorderColors
     :param story_spotlight_number:
     :type story_spotlight_number: int
     :param story_spotlight_uri:
@@ -111,6 +115,10 @@ class Card(Model):
     :type colorshifted: bool
     :param futureshifted:
     :type futureshifted: bool
+    :param purchase_uris:
+    :type purchase_uris: dict[str, str]
+    :param related_uris:
+    :type related_uris: dict[str, str]
     """
 
     _attribute_map = {
@@ -122,8 +130,9 @@ class Card(Model):
         'uri': {'key': 'uri', 'type': 'str'},
         'scryfall_uri': {'key': 'scryfall_uri', 'type': 'str'},
         'prints_search_uri': {'key': 'prints_search_uri', 'type': 'str'},
+        'rulings_uri': {'key': 'rulings_uri', 'type': 'str'},
         'name': {'key': 'name', 'type': 'str'},
-        'layout': {'key': 'layout', 'type': 'str'},
+        'layout': {'key': 'layout', 'type': 'Layouts'},
         'cmc': {'key': 'cmc', 'type': 'float'},
         'type_line': {'key': 'type_line', 'type': 'str'},
         'oracle_text': {'key': 'oracle_text', 'type': 'str'},
@@ -133,10 +142,10 @@ class Card(Model):
         'loyalty': {'key': 'loyalty', 'type': 'str'},
         'life_modifier': {'key': 'life_modifier', 'type': 'str'},
         'hand_modifier': {'key': 'hand_modifier', 'type': 'str'},
-        'colors': {'key': 'colors', 'type': '[Color]'},
-        'color_indicator': {'key': 'color_indicator', 'type': '[Color]'},
-        'color_identity': {'key': 'color_identity', 'type': '[Color]'},
-        'all_parts': {'key': 'all_parts', 'type': 'object'},
+        'colors': {'key': 'colors', 'type': '[Colors]'},
+        'color_indicator': {'key': 'color_indicator', 'type': '[Colors]'},
+        'color_identity': {'key': 'color_identity', 'type': '[Colors]'},
+        'all_parts': {'key': 'all_parts', 'type': 'RelatedCards'},
         'card_faces': {'key': 'card_faces', 'type': '[CardFace]'},
         'legalities': {'key': 'legalities', 'type': 'Legality'},
         'reserved': {'key': 'reserved', 'type': 'bool'},
@@ -157,15 +166,17 @@ class Card(Model):
         'frame': {'key': 'frame', 'type': 'str'},
         'full_art': {'key': 'full_art', 'type': 'bool'},
         'watermark': {'key': 'watermark', 'type': 'str'},
-        'border_color': {'key': 'border_color', 'type': 'BorderColor'},
+        'border_color': {'key': 'border_color', 'type': 'BorderColors'},
         'story_spotlight_number': {'key': 'story_spotlight_number', 'type': 'int'},
         'story_spotlight_uri': {'key': 'story_spotlight_uri', 'type': 'str'},
         'timeshifted': {'key': 'timeshifted', 'type': 'bool'},
         'colorshifted': {'key': 'colorshifted', 'type': 'bool'},
         'futureshifted': {'key': 'futureshifted', 'type': 'bool'},
+        'purchase_uris': {'key': 'purchase_uris', 'type': '{str}'},
+        'related_uris': {'key': 'related_uris', 'type': '{str}'},
     }
 
-    def __init__(self, id=None, oracle_id=None, multiverse_ids=None, mtgo_id=None, mtgo_foil_id=None, uri=None, scryfall_uri=None, prints_search_uri=None, name=None, layout=None, cmc=None, type_line=None, oracle_text=None, mana_cost=None, power=None, toughness=None, loyalty=None, life_modifier=None, hand_modifier=None, colors=None, color_indicator=None, color_identity=None, all_parts=None, card_faces=None, legalities=None, reserved=None, edhrec_rank=None, set=None, set_name=None, collector_number=None, set_search_uri=None, scryfall_set_uri=None, image_uris=None, highres_image=None, reprint=None, digital=None, rarity=None, flavor_text=None, artist=None, illustration_id=None, frame=None, full_art=None, watermark=None, border_color=None, story_spotlight_number=None, story_spotlight_uri=None, timeshifted=None, colorshifted=None, futureshifted=None):
+    def __init__(self, id=None, oracle_id=None, multiverse_ids=None, mtgo_id=None, mtgo_foil_id=None, uri=None, scryfall_uri=None, prints_search_uri=None, rulings_uri=None, name=None, layout=None, cmc=None, type_line=None, oracle_text=None, mana_cost=None, power=None, toughness=None, loyalty=None, life_modifier=None, hand_modifier=None, colors=None, color_indicator=None, color_identity=None, all_parts=None, card_faces=None, legalities=None, reserved=None, edhrec_rank=None, set=None, set_name=None, collector_number=None, set_search_uri=None, scryfall_set_uri=None, image_uris=None, highres_image=None, reprint=None, digital=None, rarity=None, flavor_text=None, artist=None, illustration_id=None, frame=None, full_art=None, watermark=None, border_color=None, story_spotlight_number=None, story_spotlight_uri=None, timeshifted=None, colorshifted=None, futureshifted=None, purchase_uris=None, related_uris=None):
         super(Card, self).__init__()
         self.id = id
         self.oracle_id = oracle_id
@@ -175,6 +186,7 @@ class Card(Model):
         self.uri = uri
         self.scryfall_uri = scryfall_uri
         self.prints_search_uri = prints_search_uri
+        self.rulings_uri = rulings_uri
         self.name = name
         self.layout = layout
         self.cmc = cmc
@@ -216,3 +228,5 @@ class Card(Model):
         self.timeshifted = timeshifted
         self.colorshifted = colorshifted
         self.futureshifted = futureshifted
+        self.purchase_uris = purchase_uris
+        self.related_uris = related_uris
