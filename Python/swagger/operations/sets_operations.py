@@ -6,7 +6,6 @@
 # --------------------------------------------------------------------------
 
 from msrest.pipeline import ClientRawResponse
-from msrest.exceptions import HttpOperationError
 
 from .. import models
 
@@ -41,8 +40,7 @@ class SetsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: SetList or ClientRawResponse if raw=true
         :rtype: ~swagger.models.SetList or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.get_all.metadata['url']
@@ -61,7 +59,7 @@ class SetsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -88,8 +86,7 @@ class SetsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: Set or ClientRawResponse if raw=true
         :rtype: ~swagger.models.Set or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.get_by_code.metadata['url']
@@ -112,7 +109,7 @@ class SetsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 

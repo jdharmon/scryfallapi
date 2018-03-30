@@ -6,7 +6,6 @@
 # --------------------------------------------------------------------------
 
 from msrest.pipeline import ClientRawResponse
-from msrest.exceptions import HttpOperationError
 
 from .. import models
 
@@ -43,8 +42,7 @@ class CardsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: CardList or ClientRawResponse if raw=true
         :rtype: ~swagger.models.CardList or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.get_all.metadata['url']
@@ -65,7 +63,7 @@ class CardsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -104,8 +102,7 @@ class CardsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: CardList or ClientRawResponse if raw=true
         :rtype: ~swagger.models.CardList or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.search.metadata['url']
@@ -135,7 +132,7 @@ class CardsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -174,8 +171,7 @@ class CardsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: Card or ClientRawResponse if raw=true
         :rtype: ~swagger.models.Card or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.get_named.metadata['url']
@@ -208,7 +204,7 @@ class CardsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -235,8 +231,7 @@ class CardsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: Catalog or ClientRawResponse if raw=true
         :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.autocomplete.metadata['url']
@@ -256,7 +251,7 @@ class CardsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -281,8 +276,7 @@ class CardsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: Card or ClientRawResponse if raw=true
         :rtype: ~swagger.models.Card or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.get_random.metadata['url']
@@ -301,7 +295,7 @@ class CardsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -328,8 +322,7 @@ class CardsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: Card or ClientRawResponse if raw=true
         :rtype: ~swagger.models.Card or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.get_by_multiverse_id.metadata['url']
@@ -352,7 +345,7 @@ class CardsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -379,8 +372,7 @@ class CardsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: Card or ClientRawResponse if raw=true
         :rtype: ~swagger.models.Card or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.get_by_mtgo_id.metadata['url']
@@ -403,7 +395,7 @@ class CardsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -432,8 +424,7 @@ class CardsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: Card or ClientRawResponse if raw=true
         :rtype: ~swagger.models.Card or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.get_by_code_by_number.metadata['url']
@@ -457,7 +448,7 @@ class CardsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 
@@ -484,8 +475,7 @@ class CardsOperations(object):
          overrides<msrest:optionsforoperations>`.
         :return: Card or ClientRawResponse if raw=true
         :rtype: ~swagger.models.Card or ~msrest.pipeline.ClientRawResponse
-        :raises:
-         :class:`HttpOperationError<msrest.exceptions.HttpOperationError>`
+        :raises: :class:`ErrorException<swagger.models.ErrorException>`
         """
         # Construct URL
         url = self.get_by_id.metadata['url']
@@ -508,7 +498,7 @@ class CardsOperations(object):
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
         if response.status_code not in [200]:
-            raise HttpOperationError(self._deserialize, response)
+            raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 

@@ -24,6 +24,12 @@
             "schema": {
               "$ref": "#/definitions/set_list"
             }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
           }
         }
       }
@@ -50,6 +56,12 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/set"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
             }
           }
         }
@@ -78,6 +90,12 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/card_list"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
             }
           }
         }
@@ -161,6 +179,12 @@
             "schema": {
               "$ref": "#/definitions/card_list"
             }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
           }
         }
       }
@@ -224,6 +248,12 @@
             "schema": {
               "$ref": "#/definitions/card"
             }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
           }
         }
       }
@@ -251,6 +281,12 @@
             "schema": {
               "$ref": "#/definitions/catalog"
             }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
           }
         }
       }
@@ -269,6 +305,12 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/card"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
             }
           }
         }
@@ -298,6 +340,12 @@
             "schema": {
               "$ref": "#/definitions/card"
             }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
           }
         }
       }
@@ -325,6 +373,12 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/card"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
             }
           }
         }
@@ -360,6 +414,12 @@
             "schema": {
               "$ref": "#/definitions/card"
             }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
           }
         }
       }
@@ -387,6 +447,12 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/card"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/error"
             }
           }
         }
@@ -898,6 +964,29 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/set"
+          }
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer"
+        },
+        "code": {
+          "type": "string"
+        },
+        "details": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }

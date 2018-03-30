@@ -19,3 +19,4 @@ exports.Catalog = require('./catalog');
 exports.Set = require('./set');
 exports.CardList = require('./cardList');
 exports.SetList = require('./setList');
+exports.ErrorModel = require('./errorModel');

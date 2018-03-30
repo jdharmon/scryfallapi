@@ -8,7 +8,6 @@
 from msrest.service_client import ServiceClient
 from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
-from msrest.exceptions import HttpOperationError
 from .operations.sets_operations import SetsOperations
 from .operations.cards_operations import CardsOperations
 from . import models

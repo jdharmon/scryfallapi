@@ -336,3 +336,21 @@ export interface CardList {
 export interface SetList {
   data?: Set[];
 }
+
+/**
+ * @class
+ * Initializes a new instance of the ErrorModel class.
+ * @constructor
+ * @member {number} [status]
+ * @member {string} [code]
+ * @member {string} [details]
+ * @member {string} [type]
+ * @member {array} [warnings]
+ */
+export interface ErrorModel {
+  status?: number;
+  code?: string;
+  details?: string;
+  type?: string;
+  warnings?: string[];
+}

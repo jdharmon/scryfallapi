@@ -5,6 +5,7 @@
 This is a work in progress. Only the following APIs have been implemented:
 * Sets
 * Cards
+* Errors
 
 ## Getting Started 
 Clone this repository to use the pre-generated clients.
