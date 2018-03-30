@@ -11,7 +11,7 @@ namespace Scryfall.API
 
     /// <summary>
     /// </summary>
-    public partial interface IScryfall : System.IDisposable
+    public partial interface IScryfallClient : System.IDisposable
     {
         /// <summary>
         /// The base URI of the service.
@@ -38,6 +38,21 @@ namespace Scryfall.API
         /// Gets the ICards.
         /// </summary>
         ICards Cards { get; }
+
+        /// <summary>
+        /// Gets the IRulings.
+        /// </summary>
+        IRulings Rulings { get; }
+
+        /// <summary>
+        /// Gets the ISymbology.
+        /// </summary>
+        ISymbology Symbology { get; }
+
+        /// <summary>
+        /// Gets the ICatalogOperations.
+        /// </summary>
+        ICatalogOperations Catalog { get; }
 
     }
 }

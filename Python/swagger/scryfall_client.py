@@ -10,11 +10,14 @@ from msrest import Configuration, Serializer, Deserializer
 from .version import VERSION
 from .operations.sets_operations import SetsOperations
 from .operations.cards_operations import CardsOperations
+from .operations.rulings_operations import RulingsOperations
+from .operations.symbology_operations import SymbologyOperations
+from .operations.catalog_operations import CatalogOperations
 from . import models
 
 
-class ScryfallConfiguration(Configuration):
-    """Configuration for Scryfall
+class ScryfallClientConfiguration(Configuration):
+    """Configuration for ScryfallClient
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
@@ -27,21 +30,27 @@ class ScryfallConfiguration(Configuration):
         if not base_url:
             base_url = 'https://api.scryfall.com'
 
-        super(ScryfallConfiguration, self).__init__(base_url)
+        super(ScryfallClientConfiguration, self).__init__(base_url)
 
-        self.add_user_agent('scryfall/{}'.format(VERSION))
+        self.add_user_agent('scryfallclient/{}'.format(VERSION))
 
 
-class Scryfall(object):
-    """Scryfall
+class ScryfallClient(object):
+    """ScryfallClient
 
     :ivar config: Configuration for client.
-    :vartype config: ScryfallConfiguration
+    :vartype config: ScryfallClientConfiguration
 
     :ivar sets: Sets operations
     :vartype sets: swagger.operations.SetsOperations
     :ivar cards: Cards operations
     :vartype cards: swagger.operations.CardsOperations
+    :ivar rulings: Rulings operations
+    :vartype rulings: swagger.operations.RulingsOperations
+    :ivar symbology: Symbology operations
+    :vartype symbology: swagger.operations.SymbologyOperations
+    :ivar catalog: Catalog operations
+    :vartype catalog: swagger.operations.CatalogOperations
 
     :param str base_url: Service URL
     """
@@ -49,7 +58,7 @@ class Scryfall(object):
     def __init__(
             self, base_url=None):
 
-        self.config = ScryfallConfiguration(base_url)
+        self.config = ScryfallClientConfiguration(base_url)
         self._client = ServiceClient(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
@@ -60,4 +69,10 @@ class Scryfall(object):
         self.sets = SetsOperations(
             self._client, self.config, self._serialize, self._deserialize)
         self.cards = CardsOperations(
+            self._client, self.config, self._serialize, self._deserialize)
+        self.rulings = RulingsOperations(
+            self._client, self.config, self._serialize, self._deserialize)
+        self.symbology = SymbologyOperations(
+            self._client, self.config, self._serialize, self._deserialize)
+        self.catalog = CatalogOperations(
             self._client, self.config, self._serialize, self._deserialize)

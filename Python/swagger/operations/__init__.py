@@ -7,8 +7,14 @@
 
 from .sets_operations import SetsOperations
 from .cards_operations import CardsOperations
+from .rulings_operations import RulingsOperations
+from .symbology_operations import SymbologyOperations
+from .catalog_operations import CatalogOperations
 
 __all__ = [
     'SetsOperations',
     'CardsOperations',
+    'RulingsOperations',
+    'SymbologyOperations',
+    'CatalogOperations',
 ]

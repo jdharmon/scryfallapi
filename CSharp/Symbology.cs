@@ -19,12 +19,12 @@ namespace Scryfall.API
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Sets operations.
+    /// Symbology operations.
     /// </summary>
-    public partial class Sets : IServiceOperations<ScryfallClient>, ISets
+    public partial class Symbology : IServiceOperations<ScryfallClient>, ISymbology
     {
         /// <summary>
-        /// Initializes a new instance of the Sets class.
+        /// Initializes a new instance of the Symbology class.
         /// </summary>
         /// <param name='client'>
         /// Reference to the service client.
@@ -32,7 +32,7 @@ namespace Scryfall.API
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public Sets(ScryfallClient client)
+        public Symbology(ScryfallClient client)
         {
             if (client == null)
             {
@@ -61,7 +61,7 @@ namespace Scryfall.API
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<SetList>> GetAllWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CardSymbolList>> GetAllWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -75,7 +75,7 @@ namespace Scryfall.API
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "sets").ToString();
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "symbology").ToString();
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -142,7 +142,7 @@ namespace Scryfall.API
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<SetList>();
+            var _result = new HttpOperationResponse<CardSymbolList>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -151,7 +151,7 @@ namespace Scryfall.API
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = Microsoft.Rest.Serialization.SafeJsonConvert.DeserializeObject<SetList>(_responseContent, Client.DeserializationSettings);
+                    _result.Body = Microsoft.Rest.Serialization.SafeJsonConvert.DeserializeObject<CardSymbolList>(_responseContent, Client.DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -170,7 +170,7 @@ namespace Scryfall.API
             return _result;
         }
 
-        /// <param name='code'>
+        /// <param name='cost'>
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -193,11 +193,11 @@ namespace Scryfall.API
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<Set>> GetByCodeWithHttpMessagesAsync(string code, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<ManaCost>> ParseManaWithHttpMessagesAsync(string cost, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            if (code == null)
+            if (cost == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "code");
+                throw new ValidationException(ValidationRules.CannotBeNull, "cost");
             }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -206,14 +206,22 @@ namespace Scryfall.API
             {
                 _invocationId = ServiceClientTracing.NextInvocationId.ToString();
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
-                tracingParameters.Add("code", code);
+                tracingParameters.Add("cost", cost);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "GetByCode", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "ParseMana", tracingParameters);
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
-            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "sets/{code}").ToString();
-            _url = _url.Replace("{code}", System.Uri.EscapeDataString(code));
+            var _url = new System.Uri(new System.Uri(_baseUrl + (_baseUrl.EndsWith("/") ? "" : "/")), "symbology/parse-mana").ToString();
+            List<string> _queryParameters = new List<string>();
+            if (cost != null)
+            {
+                _queryParameters.Add(string.Format("cost={0}", System.Uri.EscapeDataString(cost)));
+            }
+            if (_queryParameters.Count > 0)
+            {
+                _url += "?" + string.Join("&", _queryParameters);
+            }
             // Create HTTP transport objects
             var _httpRequest = new HttpRequestMessage();
             HttpResponseMessage _httpResponse = null;
@@ -250,7 +258,7 @@ namespace Scryfall.API
             HttpStatusCode _statusCode = _httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string _responseContent = null;
-            if ((int)_statusCode != 200)
+            if ((int)_statusCode != 201)
             {
                 var ex = new ErrorException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
                 try
@@ -280,16 +288,16 @@ namespace Scryfall.API
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<Set>();
+            var _result = new HttpOperationResponse<ManaCost>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
-            if ((int)_statusCode == 200)
+            if ((int)_statusCode == 201)
             {
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = Microsoft.Rest.Serialization.SafeJsonConvert.DeserializeObject<Set>(_responseContent, Client.DeserializationSettings);
+                    _result.Body = Microsoft.Rest.Serialization.SafeJsonConvert.DeserializeObject<ManaCost>(_responseContent, Client.DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {

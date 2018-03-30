@@ -15,7 +15,7 @@ namespace Scryfall.API
     using System.Net;
     using System.Net.Http;
 
-    public partial class Scryfall : ServiceClient<Scryfall>, IScryfall
+    public partial class ScryfallClient : ServiceClient<ScryfallClient>, IScryfallClient
     {
         /// <summary>
         /// The base URI of the service.
@@ -43,18 +43,33 @@ namespace Scryfall.API
         public virtual ICards Cards { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the Scryfall class.
+        /// Gets the IRulings.
+        /// </summary>
+        public virtual IRulings Rulings { get; private set; }
+
+        /// <summary>
+        /// Gets the ISymbology.
+        /// </summary>
+        public virtual ISymbology Symbology { get; private set; }
+
+        /// <summary>
+        /// Gets the ICatalogOperations.
+        /// </summary>
+        public virtual ICatalogOperations Catalog { get; private set; }
+
+        /// <summary>
+        /// Initializes a new instance of the ScryfallClient class.
         /// </summary>
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        public Scryfall(params DelegatingHandler[] handlers) : base(handlers)
+        public ScryfallClient(params DelegatingHandler[] handlers) : base(handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the Scryfall class.
+        /// Initializes a new instance of the ScryfallClient class.
         /// </summary>
         /// <param name='rootHandler'>
         /// Optional. The http client handler used to handle http transport.
@@ -62,13 +77,13 @@ namespace Scryfall.API
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        public Scryfall(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
+        public ScryfallClient(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the Scryfall class.
+        /// Initializes a new instance of the ScryfallClient class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -79,7 +94,7 @@ namespace Scryfall.API
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public Scryfall(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
+        public ScryfallClient(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (baseUri == null)
             {
@@ -89,7 +104,7 @@ namespace Scryfall.API
         }
 
         /// <summary>
-        /// Initializes a new instance of the Scryfall class.
+        /// Initializes a new instance of the ScryfallClient class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -103,7 +118,7 @@ namespace Scryfall.API
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public Scryfall(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        public ScryfallClient(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (baseUri == null)
             {
@@ -123,6 +138,9 @@ namespace Scryfall.API
         {
             Sets = new Sets(this);
             Cards = new Cards(this);
+            Rulings = new Rulings(this);
+            Symbology = new Symbology(this);
+            Catalog = new CatalogOperations(this);
             BaseUri = new System.Uri("https://api.scryfall.com");
             SerializationSettings = new JsonSerializerSettings
             {

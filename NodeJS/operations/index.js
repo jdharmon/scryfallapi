@@ -12,3 +12,6 @@
 
 exports.Sets = require('./sets');
 exports.Cards = require('./cards');
+exports.Rulings = require('./rulings');
+exports.Symbology = require('./symbology');
+exports.CatalogOperations = require('./catalogOperations');

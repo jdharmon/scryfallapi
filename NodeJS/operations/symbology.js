@@ -22,7 +22,7 @@ const WebResource = msRest.WebResource;
  *                      {Error}  err        - The Error object if an error occurred, null otherwise.
  *
  *                      {object} [result]   - The deserialized result object if an error did not occur.
- *                      See {@link SetList} for more information.
+ *                      See {@link CardSymbolList} for more information.
  *
  *                      {object} [request]  - The HTTP Request object if an error did not occur.
  *
@@ -41,7 +41,7 @@ function _getAll(options, callback) {
 
   // Construct URL
   let baseUrl = this.client.baseUri;
-  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'sets';
+  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'symbology';
 
   // Create HTTP transport objects
   let httpRequest = new WebResource();
@@ -100,7 +100,7 @@ function _getAll(options, callback) {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['SetList']().mapper();
+          let resultMapper = new client.models['CardSymbolList']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -116,7 +116,7 @@ function _getAll(options, callback) {
 }
 
 /**
- * @param {string} code
+ * @param {string} cost
  *
  * @param {object} [options] Optional Parameters.
  *
@@ -130,13 +130,13 @@ function _getAll(options, callback) {
  *                      {Error}  err        - The Error object if an error occurred, null otherwise.
  *
  *                      {object} [result]   - The deserialized result object if an error did not occur.
- *                      See {@link Set} for more information.
+ *                      See {@link ManaCost} for more information.
  *
  *                      {object} [request]  - The HTTP Request object if an error did not occur.
  *
  *                      {stream} [response] - The HTTP Response stream if an error did not occur.
  */
-function _getByCode(code, options, callback) {
+function _parseMana(cost, options, callback) {
    /* jshint validthis: true */
   let client = this.client;
   if(!callback && typeof options === 'function') {
@@ -148,8 +148,8 @@ function _getByCode(code, options, callback) {
   }
   // Validate
   try {
-    if (code === null || code === undefined || typeof code.valueOf() !== 'string') {
-      throw new Error('code cannot be null or undefined and it must be of type string.');
+    if (cost === null || cost === undefined || typeof cost.valueOf() !== 'string') {
+      throw new Error('cost cannot be null or undefined and it must be of type string.');
     }
   } catch (error) {
     return callback(error);
@@ -157,8 +157,12 @@ function _getByCode(code, options, callback) {
 
   // Construct URL
   let baseUrl = this.client.baseUri;
-  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'sets/{code}';
-  requestUrl = requestUrl.replace('{code}', encodeURIComponent(code));
+  let requestUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'symbology/parse-mana';
+  let queryParameters = [];
+  queryParameters.push('cost=' + encodeURIComponent(cost));
+  if (queryParameters.length > 0) {
+    requestUrl += '?' + queryParameters.join('&');
+  }
 
   // Create HTTP transport objects
   let httpRequest = new WebResource();
@@ -181,7 +185,7 @@ function _getByCode(code, options, callback) {
       return callback(err);
     }
     let statusCode = response.statusCode;
-    if (statusCode !== 200) {
+    if (statusCode !== 201) {
       let error = new Error(responseBody);
       error.statusCode = response.statusCode;
       error.request = msRest.stripRequest(httpRequest);
@@ -211,13 +215,13 @@ function _getByCode(code, options, callback) {
     let result = null;
     if (responseBody === '') responseBody = null;
     // Deserialize Response
-    if (statusCode === 200) {
+    if (statusCode === 201) {
       let parsedResponse = null;
       try {
         parsedResponse = JSON.parse(responseBody);
         result = JSON.parse(responseBody);
         if (parsedResponse !== null && parsedResponse !== undefined) {
-          let resultMapper = new client.models['Set']().mapper();
+          let resultMapper = new client.models['ManaCost']().mapper();
           result = client.deserialize(resultMapper, parsedResponse, 'result');
         }
       } catch (error) {
@@ -232,16 +236,16 @@ function _getByCode(code, options, callback) {
   });
 }
 
-/** Class representing a Sets. */
-class Sets {
+/** Class representing a Symbology. */
+class Symbology {
   /**
-   * Create a Sets.
+   * Create a Symbology.
    * @param {ScryfallClient} client Reference to the service client.
    */
   constructor(client) {
     this.client = client;
     this._getAll = _getAll;
-    this._getByCode = _getByCode;
+    this._parseMana = _parseMana;
   }
 
   /**
@@ -252,7 +256,7 @@ class Sets {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<SetList>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<CardSymbolList>} - The deserialized result object.
    *
    * @reject {Error} - The error object.
    */
@@ -283,7 +287,7 @@ class Sets {
    *
    * {Promise} A promise is returned
    *
-   *                      @resolve {SetList} - The deserialized result object.
+   *                      @resolve {CardSymbolList} - The deserialized result object.
    *
    *                      @reject {Error} - The error object.
    *
@@ -292,7 +296,7 @@ class Sets {
    *                      {Error}  err        - The Error object if an error occurred, null otherwise.
    *
    *                      {object} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link SetList} for more information.
+   *                      See {@link CardSymbolList} for more information.
    *
    *                      {object} [request]  - The HTTP Request object if an error did not occur.
    *
@@ -319,7 +323,7 @@ class Sets {
   }
 
   /**
-   * @param {string} code
+   * @param {string} cost
    *
    * @param {object} [options] Optional Parameters.
    *
@@ -328,15 +332,15 @@ class Sets {
    *
    * @returns {Promise} A promise is returned
    *
-   * @resolve {HttpOperationResponse<Set>} - The deserialized result object.
+   * @resolve {HttpOperationResponse<ManaCost>} - The deserialized result object.
    *
    * @reject {Error} - The error object.
    */
-  getByCodeWithHttpOperationResponse(code, options) {
+  parseManaWithHttpOperationResponse(cost, options) {
     let client = this.client;
     let self = this;
     return new Promise((resolve, reject) => {
-      self._getByCode(code, options, (err, result, request, response) => {
+      self._parseMana(cost, options, (err, result, request, response) => {
         let httpOperationResponse = new msRest.HttpOperationResponse(request, response);
         httpOperationResponse.body = result;
         if (err) { reject(err); }
@@ -347,7 +351,7 @@ class Sets {
   }
 
   /**
-   * @param {string} code
+   * @param {string} cost
    *
    * @param {object} [options] Optional Parameters.
    *
@@ -361,7 +365,7 @@ class Sets {
    *
    * {Promise} A promise is returned
    *
-   *                      @resolve {Set} - The deserialized result object.
+   *                      @resolve {ManaCost} - The deserialized result object.
    *
    *                      @reject {Error} - The error object.
    *
@@ -370,13 +374,13 @@ class Sets {
    *                      {Error}  err        - The Error object if an error occurred, null otherwise.
    *
    *                      {object} [result]   - The deserialized result object if an error did not occur.
-   *                      See {@link Set} for more information.
+   *                      See {@link ManaCost} for more information.
    *
    *                      {object} [request]  - The HTTP Request object if an error did not occur.
    *
    *                      {stream} [response] - The HTTP Response stream if an error did not occur.
    */
-  getByCode(code, options, optionalCallback) {
+  parseMana(cost, options, optionalCallback) {
     let client = this.client;
     let self = this;
     if (!optionalCallback && typeof options === 'function') {
@@ -385,17 +389,17 @@ class Sets {
     }
     if (!optionalCallback) {
       return new Promise((resolve, reject) => {
-        self._getByCode(code, options, (err, result, request, response) => {
+        self._parseMana(cost, options, (err, result, request, response) => {
           if (err) { reject(err); }
           else { resolve(result); }
           return;
         });
       });
     } else {
-      return self._getByCode(code, options, optionalCallback);
+      return self._parseMana(cost, options, optionalCallback);
     }
   }
 
 }
 
-module.exports = Sets;
+module.exports = Symbology;

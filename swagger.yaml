@@ -1,11 +1,15 @@
 swagger: '2.0'
 info:
   version: v1
-  title: Scryfall
+  title: Scryfall API
 host: api.scryfall.com
 schemes:
   - https
 paths:
+  #############################################
+  # Sets
+  # https://scryfall.com/docs/api/sets
+  #############################################
   /sets:
     get:
       tags:
@@ -43,6 +47,10 @@ paths:
           description: Error
           schema:
             $ref: '#/definitions/error'
+  #############################################
+  # Cards
+  # https://scryfall.com/docs/api/cards
+  #############################################
   /cards:
     get:
       tags:
@@ -298,6 +306,338 @@ paths:
           description: Success
           schema:
             $ref: '#/definitions/card'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  #############################################
+  # Rulings
+  # https://scryfall.com/docs/api/rulings
+  #############################################
+  '/cards/multiverse/{id}/rulings':
+    get:
+      tags:
+       - Rulings
+      operationId: Rulings_GetByMultiverseId
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ruling_list'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/cards/mtgo/{id}/rulings':
+    get:
+      tags:
+       - Rulings
+      operationId: Rulings_GetByMtgoId
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ruling_list'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/cards/{code}/{number}/rulings':
+    get:
+      tags:
+       - Rulings
+      operationId: Rulings_GetByCodeByNumberId
+      produces:
+        - application/json
+      parameters:
+        - name: code
+          in: path
+          required: true
+          type: string
+        - name: number
+          in: path
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ruling_list'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/cards/{id}/rulings':
+    get:
+      tags:
+       - Rulings
+      operationId: Rulings_GetById
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ruling_list'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  #############################################
+  # Card Symbols 
+  # https://scryfall.com/docs/api/card-symbols
+  #############################################
+  /symbology:
+    get:
+      tags:
+       - Symbology
+      operationId: Symbology_GetAll
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/card_symbol_list'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/symbology/parse-mana':
+    get:
+      tags: 
+       - Symbology
+      operationId: Symbology_ParseMana
+      produces:
+       - application/json
+      parameters:
+        - name: cost
+          in: query
+          required: true
+          type: string
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/mana_cost'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  #############################################
+  # Catalogs
+  # https://scryfall.com/docs/api/catalogs
+  #############################################
+  '/catalog/card-names':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetCardNames
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/word-bank':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetWordBank
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/creature-types':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetCreatureTypes
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/planeswalker-types':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetPlaneswalkerTypes
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/land-types':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetLandTypes
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/artifact-types':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetArtifactTypes
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/enchantment-types':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetEnchantmentTypes
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/spell-types':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetSpellTypes
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/powers':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetPowers
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/thoughnesses':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetToughnesses
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/loyalties':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetLoyalties
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
+  '/catalog/watermarks':
+    get:
+      tags:
+       - Catalog
+      operationId: Catalog_GetWatermarks
+      produces:
+       - application/json
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/catalog'
         default:
           description: Error
           schema:
@@ -642,6 +982,54 @@ definitions:
       search_uri:
         format: uri
         type: string
+  ruling:
+    type: object
+    properties:
+      source:
+        type: string
+      published_at:
+        format: date
+        type: string
+      comment:
+        type: string
+  card_symbol:
+    type: object
+    properties:
+      symbol:
+        type: string
+      loose_variant:
+        type: string
+      english:
+        type: string
+      transposable:
+        type: boolean
+      represents_mana:
+        type: boolean
+      cmc:
+        format: double
+        type: number
+      appears_in_mana_costs:
+        type: boolean
+      funny:
+        type: boolean
+      colors:
+        $ref: '#/definitions/colors'
+  mana_cost:
+    type: object
+    properties:
+      cost:
+        type: string
+      cmc:
+        format: double
+        type: number
+      colors:
+        $ref: '#/definitions/colors'
+      colorless:
+        type: boolean
+      monocolored:
+        type: boolean
+      multicolored:
+        type: boolean
   card_list:
     type: object
     properties:
@@ -663,7 +1051,21 @@ definitions:
       data:
         type: array
         items:
-          $ref: '#/definitions/set'        
+          $ref: '#/definitions/set'
+  ruling_list:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/ruling' 
+  card_symbol_list:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/card_symbol'
   error:
     type: object
     properties:

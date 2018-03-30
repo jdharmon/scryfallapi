@@ -17,10 +17,10 @@ const models = require('./models');
 const operations = require('./operations');
 
 
-/** Class representing a Scryfall. */
-class Scryfall extends ServiceClient {
+/** Class representing a ScryfallClient. */
+class ScryfallClient extends ServiceClient {
   /**
-   * Create a Scryfall.
+   * Create a ScryfallClient.
    * @param {string} [baseUri] - The base URI of the service.
    * @param {object} [options] - The parameter options
    * @param {Array} [options.filters] - Filters to be added to the request pipeline
@@ -43,13 +43,16 @@ class Scryfall extends ServiceClient {
     this.addUserAgentInfo(`${packageInfo.name}/${packageInfo.version}`);
     this.sets = new operations.Sets(this);
     this.cards = new operations.Cards(this);
+    this.rulings = new operations.Rulings(this);
+    this.symbology = new operations.Symbology(this);
+    this.catalogOperations = new operations.CatalogOperations(this);
     this.models = models;
     msRest.addSerializationMixin(this);
   }
 
 }
 
-module.exports = Scryfall;
-module.exports['default'] = Scryfall;
-module.exports.Scryfall = Scryfall;
+module.exports = ScryfallClient;
+module.exports['default'] = ScryfallClient;
+module.exports.ScryfallClient = ScryfallClient;
 module.exports.ScryfallModels = models;

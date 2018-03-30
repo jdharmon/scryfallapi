@@ -313,6 +313,66 @@ export interface Set {
 
 /**
  * @class
+ * Initializes a new instance of the Ruling class.
+ * @constructor
+ * @member {string} [source]
+ * @member {date} [publishedAt]
+ * @member {string} [comment]
+ */
+export interface Ruling {
+  source?: string;
+  publishedAt?: Date;
+  comment?: string;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the CardSymbol class.
+ * @constructor
+ * @member {string} [symbol]
+ * @member {string} [looseVariant]
+ * @member {string} [english]
+ * @member {boolean} [transposable]
+ * @member {boolean} [representsMana]
+ * @member {number} [cmc]
+ * @member {boolean} [appearsInManaCosts]
+ * @member {boolean} [funny]
+ * @member {string} [colors] Possible values include: 'W', 'U', 'B', 'R', 'G'
+ */
+export interface CardSymbol {
+  symbol?: string;
+  looseVariant?: string;
+  english?: string;
+  transposable?: boolean;
+  representsMana?: boolean;
+  cmc?: number;
+  appearsInManaCosts?: boolean;
+  funny?: boolean;
+  colors?: string;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the ManaCost class.
+ * @constructor
+ * @member {string} [cost]
+ * @member {number} [cmc]
+ * @member {string} [colors] Possible values include: 'W', 'U', 'B', 'R', 'G'
+ * @member {boolean} [colorless]
+ * @member {boolean} [monocolored]
+ * @member {boolean} [multicolored]
+ */
+export interface ManaCost {
+  cost?: string;
+  cmc?: number;
+  colors?: string;
+  colorless?: boolean;
+  monocolored?: boolean;
+  multicolored?: boolean;
+}
+
+/**
+ * @class
  * Initializes a new instance of the CardList class.
  * @constructor
  * @member {number} [totalCards]
@@ -335,6 +395,26 @@ export interface CardList {
  */
 export interface SetList {
   data?: Set[];
+}
+
+/**
+ * @class
+ * Initializes a new instance of the RulingList class.
+ * @constructor
+ * @member {array} [data]
+ */
+export interface RulingList {
+  data?: Ruling[];
+}
+
+/**
+ * @class
+ * Initializes a new instance of the CardSymbolList class.
+ * @constructor
+ * @member {array} [data]
+ */
+export interface CardSymbolList {
+  data?: CardSymbol[];
 }
 
 /**
