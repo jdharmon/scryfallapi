@@ -47,12 +47,13 @@ Clone this repository to use the pre-generated clients.
 To generate your own clients
 
 1. Install AutoRest via `npm` (`npm install -g autorest`)
-2. Edit the Configuration section in this README
-3. Run:
-> `autorest README.md`
+2. Run:
+
+        `autorest README.md`
 
 You may also run AutoRest in Docker by running:
-> `docker run --rm -w /var/autorest -v $(PWD):/var/autorest azuresdk/autorest`
+
+        `docker run --rm -w /var/autorest -v $(PWD):/var/autorest azuresdk/autorest`
 
 ---
 
@@ -67,10 +68,21 @@ input-file: swagger.yaml
 csharp:
   namespace: Scryfall.API
   output-folder: CSharp
+go:
+  output-folder: Go
+java:
+  namespace: com.scryfall.api
+  output-folder: Java
 nodejs:
   output-folder: NodeJS
+typescript:
+  output-folder: TypeScript
 python:
   output-folder: Python
+ruby:
+  output-folder: Ruby
+php:
+  output-folder: PHP
   
 directive:
 - from: swagger-document
