@@ -5,10 +5,10 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from .scryfall_client import ScryfallClient
+from .scryfall import Scryfall
 from .version import VERSION
 
-__all__ = ['ScryfallClient']
+__all__ = ['Scryfall']
 
 __version__ = VERSION
 

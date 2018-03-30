@@ -236,7 +236,7 @@ function _getByCode(code, options, callback) {
 class Sets {
   /**
    * Create a Sets.
-   * @param {ScryfallClient} client Reference to the service client.
+   * @param {Scryfall} client Reference to the service client.
    */
   constructor(client) {
     this.client = client;

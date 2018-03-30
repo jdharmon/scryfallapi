@@ -13,8 +13,8 @@ from .operations.cards_operations import CardsOperations
 from . import models
 
 
-class ScryfallClientConfiguration(Configuration):
-    """Configuration for ScryfallClient
+class ScryfallConfiguration(Configuration):
+    """Configuration for Scryfall
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
@@ -27,16 +27,16 @@ class ScryfallClientConfiguration(Configuration):
         if not base_url:
             base_url = 'https://api.scryfall.com'
 
-        super(ScryfallClientConfiguration, self).__init__(base_url)
+        super(ScryfallConfiguration, self).__init__(base_url)
 
-        self.add_user_agent('scryfallclient/{}'.format(VERSION))
+        self.add_user_agent('scryfall/{}'.format(VERSION))
 
 
-class ScryfallClient(object):
-    """ScryfallClient
+class Scryfall(object):
+    """Scryfall
 
     :ivar config: Configuration for client.
-    :vartype config: ScryfallClientConfiguration
+    :vartype config: ScryfallConfiguration
 
     :ivar sets: Sets operations
     :vartype sets: swagger.operations.SetsOperations
@@ -49,7 +49,7 @@ class ScryfallClient(object):
     def __init__(
             self, base_url=None):
 
-        self.config = ScryfallClientConfiguration(base_url)
+        self.config = ScryfallConfiguration(base_url)
         self._client = ServiceClient(None, self.config)
 
         client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}

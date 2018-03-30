@@ -8,10 +8,10 @@ import { ServiceClient, ServiceClientOptions } from 'ms-rest';
 import * as models from "./models";
 import * as operations from "./operations";
 
-export default class ScryfallClient extends ServiceClient {
+export default class Scryfall extends ServiceClient {
   /**
    * @class
-   * Initializes a new instance of the ScryfallClient class.
+   * Initializes a new instance of the Scryfall class.
    * @constructor
    *
    * @param {string} [baseUri] - The base URI of the service.
@@ -33,4 +33,4 @@ export default class ScryfallClient extends ServiceClient {
   cards: operations.Cards;
 }
 
-export { ScryfallClient, models as ScryfallModels };
+export { Scryfall, models as ScryfallModels };

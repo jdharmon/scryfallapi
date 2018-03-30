@@ -15,7 +15,7 @@ namespace Scryfall.API
     using System.Net;
     using System.Net.Http;
 
-    public partial class ScryfallClient : ServiceClient<ScryfallClient>, IScryfallClient
+    public partial class Scryfall : ServiceClient<Scryfall>, IScryfall
     {
         /// <summary>
         /// The base URI of the service.
@@ -43,18 +43,18 @@ namespace Scryfall.API
         public virtual ICards Cards { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the ScryfallClient class.
+        /// Initializes a new instance of the Scryfall class.
         /// </summary>
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        public ScryfallClient(params DelegatingHandler[] handlers) : base(handlers)
+        public Scryfall(params DelegatingHandler[] handlers) : base(handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScryfallClient class.
+        /// Initializes a new instance of the Scryfall class.
         /// </summary>
         /// <param name='rootHandler'>
         /// Optional. The http client handler used to handle http transport.
@@ -62,13 +62,13 @@ namespace Scryfall.API
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        public ScryfallClient(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
+        public Scryfall(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScryfallClient class.
+        /// Initializes a new instance of the Scryfall class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -79,7 +79,7 @@ namespace Scryfall.API
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public ScryfallClient(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
+        public Scryfall(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (baseUri == null)
             {
@@ -89,7 +89,7 @@ namespace Scryfall.API
         }
 
         /// <summary>
-        /// Initializes a new instance of the ScryfallClient class.
+        /// Initializes a new instance of the Scryfall class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -103,7 +103,7 @@ namespace Scryfall.API
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public ScryfallClient(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        public Scryfall(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (baseUri == null)
             {

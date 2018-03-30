@@ -24,7 +24,7 @@ The following are the settings for this using this API with AutoRest
 > see https://aka.ms/autorest
 
 ``` yaml 
-input-file: swagger.json
+input-file: swagger.yaml
 
 csharp:
   namespace: Scryfall.API
@@ -33,10 +33,4 @@ nodejs:
   output-folder: NodeJS
 python:
   output-folder: Python
-  
-directive:
-- from: swagger.json
-  where: $.info.title
-  set: ScryfallClient
-  reason: Set friendly client class names.  
 ```

@@ -12,7 +12,7 @@ import * as models from '../models';
  * @class
  * Sets
  * __NOTE__: An instance of this class is automatically created for an
- * instance of the ScryfallClient.
+ * instance of the Scryfall.
  */
 export interface Sets {
 
@@ -119,7 +119,7 @@ export interface Sets {
  * @class
  * Cards
  * __NOTE__: An instance of this class is automatically created for an
- * instance of the ScryfallClient.
+ * instance of the Scryfall.
  */
 export interface Cards {
 

@@ -15,7 +15,7 @@ from .set import Set
 from .card_list import CardList
 from .set_list import SetList
 from .error import Error, ErrorException
-from .scryfall_client_enums import (
+from .scryfall_enums import (
     Layouts,
     Colors,
     LegalStatus,

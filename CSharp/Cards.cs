@@ -21,7 +21,7 @@ namespace Scryfall.API
     /// <summary>
     /// Cards operations.
     /// </summary>
-    public partial class Cards : IServiceOperations<ScryfallClient>, ICards
+    public partial class Cards : IServiceOperations<Scryfall>, ICards
     {
         /// <summary>
         /// Initializes a new instance of the Cards class.
@@ -32,7 +32,7 @@ namespace Scryfall.API
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public Cards(ScryfallClient client)
+        public Cards(Scryfall client)
         {
             if (client == null)
             {
@@ -42,9 +42,9 @@ namespace Scryfall.API
         }
 
         /// <summary>
-        /// Gets a reference to the ScryfallClient
+        /// Gets a reference to the Scryfall
         /// </summary>
-        public ScryfallClient Client { get; private set; }
+        public Scryfall Client { get; private set; }
 
         /// <param name='page'>
         /// </param>

@@ -1185,7 +1185,7 @@ function _getById(id, options, callback) {
 class Cards {
   /**
    * Create a Cards.
-   * @param {ScryfallClient} client Reference to the service client.
+   * @param {Scryfall} client Reference to the service client.
    */
   constructor(client) {
     this.client = client;

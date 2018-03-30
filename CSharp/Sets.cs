@@ -21,7 +21,7 @@ namespace Scryfall.API
     /// <summary>
     /// Sets operations.
     /// </summary>
-    public partial class Sets : IServiceOperations<ScryfallClient>, ISets
+    public partial class Sets : IServiceOperations<Scryfall>, ISets
     {
         /// <summary>
         /// Initializes a new instance of the Sets class.
@@ -32,7 +32,7 @@ namespace Scryfall.API
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public Sets(ScryfallClient client)
+        public Sets(Scryfall client)
         {
             if (client == null)
             {
@@ -42,9 +42,9 @@ namespace Scryfall.API
         }
 
         /// <summary>
-        /// Gets a reference to the ScryfallClient
+        /// Gets a reference to the Scryfall
         /// </summary>
-        public ScryfallClient Client { get; private set; }
+        public Scryfall Client { get; private set; }
 
         /// <param name='customHeaders'>
         /// Headers that will be added to request.

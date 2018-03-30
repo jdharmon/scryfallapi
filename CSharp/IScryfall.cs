@@ -11,7 +11,7 @@ namespace Scryfall.API
 
     /// <summary>
     /// </summary>
-    public partial interface IScryfallClient : System.IDisposable
+    public partial interface IScryfall : System.IDisposable
     {
         /// <summary>
         /// The base URI of the service.
