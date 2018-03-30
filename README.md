@@ -49,11 +49,11 @@ To generate your own clients
 1. Install AutoRest via `npm` (`npm install -g autorest`)
 2. Run:
 
-        `autorest README.md`
+        autorest README.md
 
 You may also run AutoRest in Docker by running:
 
-        `docker run --rm -w /var/autorest -v $(PWD):/var/autorest azuresdk/autorest`
+        docker run --rm -w /var/autorest -v $(PWD):/var/autorest azuresdk/autorest
 
 ---
 
