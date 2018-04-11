@@ -142,8 +142,8 @@ function _getAll(options, callback) {
  * 'prints'
  *
  * @param {string} [options.order] Possible values include: 'name', 'set',
- * 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
- * 'edhrec', 'artist'
+ * 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power',
+ * 'toughness', 'edhrec', 'artist'
  *
  * @param {string} [options.dir] Possible values include: 'auto', 'asc', 'desc'
  *
@@ -1287,8 +1287,8 @@ class Cards {
    * 'prints'
    *
    * @param {string} [options.order] Possible values include: 'name', 'set',
-   * 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
-   * 'edhrec', 'artist'
+   * 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power',
+   * 'toughness', 'edhrec', 'artist'
    *
    * @param {string} [options.dir] Possible values include: 'auto', 'asc', 'desc'
    *
@@ -1328,8 +1328,8 @@ class Cards {
    * 'prints'
    *
    * @param {string} [options.order] Possible values include: 'name', 'set',
-   * 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
-   * 'edhrec', 'artist'
+   * 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power',
+   * 'toughness', 'edhrec', 'artist'
    *
    * @param {string} [options.dir] Possible values include: 'auto', 'asc', 'desc'
    *

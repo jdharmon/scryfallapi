@@ -96,8 +96,9 @@ module Swagger
     #
     # @param q [String]
     # @param unique [Enum] Possible values include: 'cards', 'art', 'prints'
-    # @param order [Enum] Possible values include: 'name', 'set', 'rarity',
-    # 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
+    # @param order [Enum] Possible values include: 'name', 'set', 'released',
+    # 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
+    # 'edhrec', 'artist'
     # @param dir [Enum] Possible values include: 'auto', 'asc', 'desc'
     # @param include_extras [Boolean]
     # @param page [Integer]
@@ -114,8 +115,9 @@ module Swagger
     #
     # @param q [String]
     # @param unique [Enum] Possible values include: 'cards', 'art', 'prints'
-    # @param order [Enum] Possible values include: 'name', 'set', 'rarity',
-    # 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
+    # @param order [Enum] Possible values include: 'name', 'set', 'released',
+    # 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
+    # 'edhrec', 'artist'
     # @param dir [Enum] Possible values include: 'auto', 'asc', 'desc'
     # @param include_extras [Boolean]
     # @param page [Integer]
@@ -131,8 +133,9 @@ module Swagger
     #
     # @param q [String]
     # @param unique [Enum] Possible values include: 'cards', 'art', 'prints'
-    # @param order [Enum] Possible values include: 'name', 'set', 'rarity',
-    # 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
+    # @param order [Enum] Possible values include: 'name', 'set', 'released',
+    # 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
+    # 'edhrec', 'artist'
     # @param dir [Enum] Possible values include: 'auto', 'asc', 'desc'
     # @param include_extras [Boolean]
     # @param page [Integer]

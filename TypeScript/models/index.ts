@@ -680,9 +680,9 @@ export interface CardsSearchOptionalParams extends RequestOptionsBase {
    */
   unique?: Unique;
   /**
-   * @member {Order} [order] Possible values include: 'name', 'set', 'rarity',
-   * 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec',
-   * 'artist'
+   * @member {Order} [order] Possible values include: 'name', 'set',
+   * 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power',
+   * 'toughness', 'edhrec', 'artist'
    */
   order?: Order;
   /**
@@ -864,8 +864,8 @@ export enum Unique {
 
 /**
  * Defines values for Order.
- * Possible values include: 'name', 'set', 'rarity', 'color', 'usd', 'tix',
- * 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
+ * Possible values include: 'name', 'set', 'released', 'rarity', 'color',
+ * 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
  * There could be more values for this enum apart from the ones defined here.If
  * you want to set a value that is not from the known values then you can do
  * the following:
@@ -876,6 +876,7 @@ export enum Unique {
 export enum Order {
   Name = 'name',
   Set = 'set',
+  Released = 'released',
   Rarity = 'rarity',
   Color = 'color',
   Usd = 'usd',

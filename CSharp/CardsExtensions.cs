@@ -50,8 +50,8 @@ namespace Scryfall.API
             /// Possible values include: 'cards', 'art', 'prints'
             /// </param>
             /// <param name='order'>
-            /// Possible values include: 'name', 'set', 'rarity', 'color', 'usd', 'tix',
-            /// 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
+            /// Possible values include: 'name', 'set', 'released', 'rarity', 'color',
+            /// 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
             /// </param>
             /// <param name='dir'>
             /// Possible values include: 'auto', 'asc', 'desc'
@@ -74,8 +74,8 @@ namespace Scryfall.API
             /// Possible values include: 'cards', 'art', 'prints'
             /// </param>
             /// <param name='order'>
-            /// Possible values include: 'name', 'set', 'rarity', 'color', 'usd', 'tix',
-            /// 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
+            /// Possible values include: 'name', 'set', 'released', 'rarity', 'color',
+            /// 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
             /// </param>
             /// <param name='dir'>
             /// Possible values include: 'auto', 'asc', 'desc'

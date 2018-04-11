@@ -125,7 +125,7 @@ public interface Cards {
      *
      * @param q the String value
      * @param unique Possible values include: 'cards', 'art', 'prints'
-     * @param order Possible values include: 'name', 'set', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
+     * @param order Possible values include: 'name', 'set', 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
      * @param dir Possible values include: 'auto', 'asc', 'desc'
      * @param includeExtras the Boolean value
      * @param page the Integer value
@@ -140,7 +140,7 @@ public interface Cards {
      *
      * @param q the String value
      * @param unique Possible values include: 'cards', 'art', 'prints'
-     * @param order Possible values include: 'name', 'set', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
+     * @param order Possible values include: 'name', 'set', 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
      * @param dir Possible values include: 'auto', 'asc', 'desc'
      * @param includeExtras the Boolean value
      * @param page the Integer value
@@ -154,7 +154,7 @@ public interface Cards {
      *
      * @param q the String value
      * @param unique Possible values include: 'cards', 'art', 'prints'
-     * @param order Possible values include: 'name', 'set', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
+     * @param order Possible values include: 'name', 'set', 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
      * @param dir Possible values include: 'auto', 'asc', 'desc'
      * @param includeExtras the Boolean value
      * @param page the Integer value
@@ -167,7 +167,7 @@ public interface Cards {
      *
      * @param q the String value
      * @param unique Possible values include: 'cards', 'art', 'prints'
-     * @param order Possible values include: 'name', 'set', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
+     * @param order Possible values include: 'name', 'set', 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
      * @param dir Possible values include: 'auto', 'asc', 'desc'
      * @param includeExtras the Boolean value
      * @param page the Integer value

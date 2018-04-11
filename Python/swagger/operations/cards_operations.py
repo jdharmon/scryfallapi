@@ -85,9 +85,9 @@ class CardsOperations(object):
         :type q: str
         :param unique: Possible values include: 'cards', 'art', 'prints'
         :type unique: str
-        :param order: Possible values include: 'name', 'set', 'rarity',
-         'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec',
-         'artist'
+        :param order: Possible values include: 'name', 'set', 'released',
+         'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
+         'edhrec', 'artist'
         :type order: str
         :param dir: Possible values include: 'auto', 'asc', 'desc'
         :type dir: str
