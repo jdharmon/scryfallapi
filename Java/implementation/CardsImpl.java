@@ -16,6 +16,9 @@ import com.scryfall.api.models.Card;
 import com.scryfall.api.models.CardList;
 import com.scryfall.api.models.Catalog;
 import com.scryfall.api.models.ErrorException;
+import com.scryfall.api.models.SortDirection;
+import com.scryfall.api.models.SortOrder;
+import com.scryfall.api.models.UniqueStrategy;
 import java.io.IOException;
 import java.util.UUID;
 import okhttp3.ResponseBody;
@@ -59,7 +62,7 @@ public class CardsImpl implements Cards {
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.scryfall.api.Cards search" })
         @GET("cards/search")
-        Observable<Response<ResponseBody>> search(@Query("q") String q, @Query("unique") String unique, @Query("order") String order, @Query("dir") String dir, @Query("include_extras") Boolean includeExtras, @Query("page") Integer page);
+        Observable<Response<ResponseBody>> search(@Query("q") String q, @Query("unique") UniqueStrategy unique, @Query("order") SortOrder order, @Query("dir") SortDirection dir, @Query("include_extras") Boolean includeExtras, @Query("page") Integer page);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: com.scryfall.api.Cards getNamed" })
         @GET("cards/named")
@@ -261,9 +264,9 @@ public class CardsImpl implements Cards {
         if (q == null) {
             throw new IllegalArgumentException("Parameter q is required and cannot be null.");
         }
-        final String unique = null;
-        final String order = null;
-        final String dir = null;
+        final UniqueStrategy unique = null;
+        final SortOrder order = null;
+        final SortDirection dir = null;
         final Boolean includeExtras = null;
         final Integer page = null;
         return service.search(q, unique, order, dir, includeExtras, page)
@@ -293,7 +296,7 @@ public class CardsImpl implements Cards {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CardList object if successful.
      */
-    public CardList search(String q, String unique, String order, String dir, Boolean includeExtras, Integer page) {
+    public CardList search(String q, UniqueStrategy unique, SortOrder order, SortDirection dir, Boolean includeExtras, Integer page) {
         return searchWithServiceResponseAsync(q, unique, order, dir, includeExtras, page).toBlocking().single().body();
     }
 
@@ -309,7 +312,7 @@ public class CardsImpl implements Cards {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CardList> searchAsync(String q, String unique, String order, String dir, Boolean includeExtras, Integer page, final ServiceCallback<CardList> serviceCallback) {
+    public ServiceFuture<CardList> searchAsync(String q, UniqueStrategy unique, SortOrder order, SortDirection dir, Boolean includeExtras, Integer page, final ServiceCallback<CardList> serviceCallback) {
         return ServiceFuture.fromResponse(searchWithServiceResponseAsync(q, unique, order, dir, includeExtras, page), serviceCallback);
     }
 
@@ -324,7 +327,7 @@ public class CardsImpl implements Cards {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CardList object
      */
-    public Observable<CardList> searchAsync(String q, String unique, String order, String dir, Boolean includeExtras, Integer page) {
+    public Observable<CardList> searchAsync(String q, UniqueStrategy unique, SortOrder order, SortDirection dir, Boolean includeExtras, Integer page) {
         return searchWithServiceResponseAsync(q, unique, order, dir, includeExtras, page).map(new Func1<ServiceResponse<CardList>, CardList>() {
             @Override
             public CardList call(ServiceResponse<CardList> response) {
@@ -344,7 +347,7 @@ public class CardsImpl implements Cards {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CardList object
      */
-    public Observable<ServiceResponse<CardList>> searchWithServiceResponseAsync(String q, String unique, String order, String dir, Boolean includeExtras, Integer page) {
+    public Observable<ServiceResponse<CardList>> searchWithServiceResponseAsync(String q, UniqueStrategy unique, SortOrder order, SortDirection dir, Boolean includeExtras, Integer page) {
         if (q == null) {
             throw new IllegalArgumentException("Parameter q is required and cannot be null.");
         }

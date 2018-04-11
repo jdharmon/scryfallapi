@@ -65,7 +65,7 @@ namespace Scryfall.API
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<HttpOperationResponse<CardList>> SearchWithHttpMessagesAsync(string q, string unique = default(string), string order = default(string), string dir = default(string), bool? includeExtras = default(bool?), int? page = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<CardList>> SearchWithHttpMessagesAsync(string q, UniqueStrategy? unique = default(UniqueStrategy?), SortOrder? order = default(SortOrder?), SortDirection? dir = default(SortDirection?), bool? includeExtras = default(bool?), int? page = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <param name='exact'>
         /// </param>
         /// <param name='fuzzy'>

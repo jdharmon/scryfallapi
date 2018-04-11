@@ -505,7 +505,7 @@ func (client CardsClient) GetRandomMethod(ctx context.Context) (result CardType,
 // SearchMethod sends the search request.
     //
     // unique is  order is  dir is
-func (client CardsClient) SearchMethod(ctx context.Context, q string, unique string, order string, dir string, includeExtras *bool, page *int32) (result CardListType, err error) {
+func (client CardsClient) SearchMethod(ctx context.Context, q string, unique UniqueStrategyEnum, order SortOrderEnum, dir SortDirectionEnum, includeExtras *bool, page *int32) (result CardListType, err error) {
     req, err := client.SearchMethodPreparer(ctx, q, unique, order, dir, includeExtras, page)
     if err != nil {
     err = autorest.NewErrorWithError(err, ".CardsClient", "SearchMethod", nil , "Failure preparing request")
@@ -528,7 +528,7 @@ func (client CardsClient) SearchMethod(ctx context.Context, q string, unique str
     }
 
     // SearchMethodPreparer prepares the SearchMethod request.
-    func (client CardsClient) SearchMethodPreparer(ctx context.Context, q string, unique string, order string, dir string, includeExtras *bool, page *int32) (*http.Request, error) {
+    func (client CardsClient) SearchMethodPreparer(ctx context.Context, q string, unique UniqueStrategyEnum, order SortOrderEnum, dir SortDirectionEnum, includeExtras *bool, page *int32) (*http.Request, error) {
                 queryParameters := map[string]interface{} {
         "q": autorest.Encode("query",q),
         }

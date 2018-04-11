@@ -93,6 +93,9 @@ paths:
             - cards
             - art
             - prints
+          x-ms-enum:
+            name: unique_strategy
+            modelAsString: false
         - name: order
           in: query
           required: false
@@ -111,6 +114,9 @@ paths:
             - toughness
             - edhrec
             - artist
+          x-ms-enum:
+            name: sort_order
+            modelAsString: false
         - name: dir
           in: query
           required: false
@@ -119,6 +125,9 @@ paths:
             - auto
             - asc
             - desc
+          x-ms-enum:
+            name: sort_direction
+            modelAsString: false
         - name: include_extras
           in: query
           required: false

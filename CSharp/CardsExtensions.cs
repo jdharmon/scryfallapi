@@ -60,7 +60,7 @@ namespace Scryfall.API
             /// </param>
             /// <param name='page'>
             /// </param>
-            public static CardList Search(this ICards operations, string q, string unique = default(string), string order = default(string), string dir = default(string), bool? includeExtras = default(bool?), int? page = default(int?))
+            public static CardList Search(this ICards operations, string q, UniqueStrategy? unique = default(UniqueStrategy?), SortOrder? order = default(SortOrder?), SortDirection? dir = default(SortDirection?), bool? includeExtras = default(bool?), int? page = default(int?))
             {
                 return operations.SearchAsync(q, unique, order, dir, includeExtras, page).GetAwaiter().GetResult();
             }
@@ -87,7 +87,7 @@ namespace Scryfall.API
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<CardList> SearchAsync(this ICards operations, string q, string unique = default(string), string order = default(string), string dir = default(string), bool? includeExtras = default(bool?), int? page = default(int?), CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<CardList> SearchAsync(this ICards operations, string q, UniqueStrategy? unique = default(UniqueStrategy?), SortOrder? order = default(SortOrder?), SortDirection? dir = default(SortDirection?), bool? includeExtras = default(bool?), int? page = default(int?), CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.SearchWithHttpMessagesAsync(q, unique, order, dir, includeExtras, page, null, cancellationToken).ConfigureAwait(false))
                 {

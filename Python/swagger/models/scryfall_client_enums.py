@@ -80,3 +80,34 @@ class SetTypes(Enum):
     token = "token"
     memorabilia = "memorabilia"
     treasure_chest = "treasure_chest"
+
+
+class UniqueStrategy(Enum):
+
+    cards = "cards"
+    art = "art"
+    prints = "prints"
+
+
+class SortOrder(Enum):
+
+    name = "name"
+    set = "set"
+    released = "released"
+    rarity = "rarity"
+    color = "color"
+    usd = "usd"
+    tix = "tix"
+    eur = "eur"
+    cmc = "cmc"
+    power = "power"
+    toughness = "toughness"
+    edhrec = "edhrec"
+    artist = "artist"
+
+
+class SortDirection(Enum):
+
+    auto = "auto"
+    asc = "asc"
+    desc = "desc"

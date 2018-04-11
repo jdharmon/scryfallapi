@@ -13,6 +13,9 @@ import com.scryfall.api.models.Card;
 import com.scryfall.api.models.CardList;
 import com.scryfall.api.models.Catalog;
 import com.scryfall.api.models.ErrorException;
+import com.scryfall.api.models.SortDirection;
+import com.scryfall.api.models.SortOrder;
+import com.scryfall.api.models.UniqueStrategy;
 import java.io.IOException;
 import java.util.UUID;
 import rx.Observable;
@@ -134,7 +137,7 @@ public interface Cards {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
      * @return the CardList object if successful.
      */
-    CardList search(String q, String unique, String order, String dir, Boolean includeExtras, Integer page);
+    CardList search(String q, UniqueStrategy unique, SortOrder order, SortDirection dir, Boolean includeExtras, Integer page);
 
     /**
      *
@@ -148,7 +151,7 @@ public interface Cards {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<CardList> searchAsync(String q, String unique, String order, String dir, Boolean includeExtras, Integer page, final ServiceCallback<CardList> serviceCallback);
+    ServiceFuture<CardList> searchAsync(String q, UniqueStrategy unique, SortOrder order, SortDirection dir, Boolean includeExtras, Integer page, final ServiceCallback<CardList> serviceCallback);
 
     /**
      *
@@ -161,7 +164,7 @@ public interface Cards {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CardList object
      */
-    Observable<CardList> searchAsync(String q, String unique, String order, String dir, Boolean includeExtras, Integer page);
+    Observable<CardList> searchAsync(String q, UniqueStrategy unique, SortOrder order, SortDirection dir, Boolean includeExtras, Integer page);
 
     /**
      *
@@ -174,7 +177,7 @@ public interface Cards {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the observable to the CardList object
      */
-    Observable<ServiceResponse<CardList>> searchWithServiceResponseAsync(String q, String unique, String order, String dir, Boolean includeExtras, Integer page);
+    Observable<ServiceResponse<CardList>> searchWithServiceResponseAsync(String q, UniqueStrategy unique, SortOrder order, SortDirection dir, Boolean includeExtras, Integer page);
 
     /**
      *

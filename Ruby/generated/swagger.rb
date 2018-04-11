@@ -48,5 +48,8 @@ module Swagger
     autoload :Rarity,                                             'generated/swagger/models/rarity.rb'
     autoload :BorderColors,                                       'generated/swagger/models/border_colors.rb'
     autoload :SetTypes,                                           'generated/swagger/models/set_types.rb'
+    autoload :UniqueStrategy,                                     'generated/swagger/models/unique_strategy.rb'
+    autoload :SortOrder,                                          'generated/swagger/models/sort_order.rb'
+    autoload :SortDirection,                                      'generated/swagger/models/sort_direction.rb'
   end
 end

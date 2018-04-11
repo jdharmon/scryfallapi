@@ -84,13 +84,13 @@ class CardsOperations(object):
         :param q:
         :type q: str
         :param unique: Possible values include: 'cards', 'art', 'prints'
-        :type unique: str
+        :type unique: str or ~swagger.models.UniqueStrategy
         :param order: Possible values include: 'name', 'set', 'released',
          'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
          'edhrec', 'artist'
-        :type order: str
+        :type order: str or ~swagger.models.SortOrder
         :param dir: Possible values include: 'auto', 'asc', 'desc'
-        :type dir: str
+        :type dir: str or ~swagger.models.SortDirection
         :param include_extras:
         :type include_extras: bool
         :param page:
@@ -111,11 +111,11 @@ class CardsOperations(object):
         query_parameters = {}
         query_parameters['q'] = self._serialize.query("q", q, 'str')
         if unique is not None:
-            query_parameters['unique'] = self._serialize.query("unique", unique, 'str')
+            query_parameters['unique'] = self._serialize.query("unique", unique, 'UniqueStrategy')
         if order is not None:
-            query_parameters['order'] = self._serialize.query("order", order, 'str')
+            query_parameters['order'] = self._serialize.query("order", order, 'SortOrder')
         if dir is not None:
-            query_parameters['dir'] = self._serialize.query("dir", dir, 'str')
+            query_parameters['dir'] = self._serialize.query("dir", dir, 'SortDirection')
         if include_extras is not None:
             query_parameters['include_extras'] = self._serialize.query("include_extras", include_extras, 'bool')
         if page is not None:

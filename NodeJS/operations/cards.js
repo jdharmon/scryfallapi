@@ -187,14 +187,23 @@ function _search(q, options, callback) {
     if (q === null || q === undefined || typeof q.valueOf() !== 'string') {
       throw new Error('q cannot be null or undefined and it must be of type string.');
     }
-    if (unique !== null && unique !== undefined && typeof unique.valueOf() !== 'string') {
-      throw new Error('unique must be of type string.');
+    if (unique) {
+      let allowedValues = [ 'cards', 'art', 'prints' ];
+      if (!allowedValues.some( function(item) { return item === unique; })) {
+        throw new Error(unique + ' is not a valid value. The valid values are: ' + allowedValues);
+      }
     }
-    if (order !== null && order !== undefined && typeof order.valueOf() !== 'string') {
-      throw new Error('order must be of type string.');
+    if (order) {
+      let allowedValues1 = [ 'name', 'set', 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist' ];
+      if (!allowedValues1.some( function(item) { return item === order; })) {
+        throw new Error(order + ' is not a valid value. The valid values are: ' + allowedValues1);
+      }
     }
-    if (dir !== null && dir !== undefined && typeof dir.valueOf() !== 'string') {
-      throw new Error('dir must be of type string.');
+    if (dir) {
+      let allowedValues2 = [ 'auto', 'asc', 'desc' ];
+      if (!allowedValues2.some( function(item) { return item === dir; })) {
+        throw new Error(dir + ' is not a valid value. The valid values are: ' + allowedValues2);
+      }
     }
     if (includeExtras !== null && includeExtras !== undefined && typeof includeExtras !== 'boolean') {
       throw new Error('includeExtras must be of type boolean.');

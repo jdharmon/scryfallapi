@@ -675,20 +675,21 @@ export interface CardsGetAllOptionalParams extends RequestOptionsBase {
  */
 export interface CardsSearchOptionalParams extends RequestOptionsBase {
   /**
-   * @member {Unique} [unique] Possible values include: 'cards', 'art',
+   * @member {UniqueStrategy} [unique] Possible values include: 'cards', 'art',
    * 'prints'
    */
-  unique?: Unique;
+  unique?: UniqueStrategy;
   /**
-   * @member {Order} [order] Possible values include: 'name', 'set',
+   * @member {SortOrder} [order] Possible values include: 'name', 'set',
    * 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power',
    * 'toughness', 'edhrec', 'artist'
    */
-  order?: Order;
+  order?: SortOrder;
   /**
-   * @member {Dir} [dir] Possible values include: 'auto', 'asc', 'desc'
+   * @member {SortDirection} [dir] Possible values include: 'auto', 'asc',
+   * 'desc'
    */
-  dir?: Dir;
+  dir?: SortDirection;
   /**
    * @member {boolean} [includeExtras]
    */
@@ -847,33 +848,25 @@ export enum SetTypes {
 }
 
 /**
- * Defines values for Unique.
+ * Defines values for UniqueStrategy.
  * Possible values include: 'cards', 'art', 'prints'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Unique = <Unique>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Unique {
+export enum UniqueStrategy {
   Cards = 'cards',
   Art = 'art',
   Prints = 'prints',
 }
 
 /**
- * Defines values for Order.
+ * Defines values for SortOrder.
  * Possible values include: 'name', 'set', 'released', 'rarity', 'color',
  * 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Order = <Order>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Order {
+export enum SortOrder {
   Name = 'name',
   Set = 'set',
   Released = 'released',
@@ -890,16 +883,12 @@ export enum Order {
 }
 
 /**
- * Defines values for Dir.
+ * Defines values for SortDirection.
  * Possible values include: 'auto', 'asc', 'desc'
- * There could be more values for this enum apart from the ones defined here.If
- * you want to set a value that is not from the known values then you can do
- * the following:
- * let param: Dir = <Dir>"someUnknownValueThatWillStillBeValid";
  * @readonly
  * @enum {string}
  */
-export enum Dir {
+export enum SortDirection {
   Auto = 'auto',
   Asc = 'asc',
   Desc = 'desc',

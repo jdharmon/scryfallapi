@@ -219,7 +219,7 @@ namespace Scryfall.API
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<CardList>> SearchWithHttpMessagesAsync(string q, string unique = default(string), string order = default(string), string dir = default(string), bool? includeExtras = default(bool?), int? page = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<CardList>> SearchWithHttpMessagesAsync(string q, UniqueStrategy? unique = default(UniqueStrategy?), SortOrder? order = default(SortOrder?), SortDirection? dir = default(SortDirection?), bool? includeExtras = default(bool?), int? page = default(int?), Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (q == null)
             {
@@ -251,15 +251,15 @@ namespace Scryfall.API
             }
             if (unique != null)
             {
-                _queryParameters.Add(string.Format("unique={0}", System.Uri.EscapeDataString(unique)));
+                _queryParameters.Add(string.Format("unique={0}", System.Uri.EscapeDataString(Microsoft.Rest.Serialization.SafeJsonConvert.SerializeObject(unique, Client.SerializationSettings).Trim('"'))));
             }
             if (order != null)
             {
-                _queryParameters.Add(string.Format("order={0}", System.Uri.EscapeDataString(order)));
+                _queryParameters.Add(string.Format("order={0}", System.Uri.EscapeDataString(Microsoft.Rest.Serialization.SafeJsonConvert.SerializeObject(order, Client.SerializationSettings).Trim('"'))));
             }
             if (dir != null)
             {
-                _queryParameters.Add(string.Format("dir={0}", System.Uri.EscapeDataString(dir)));
+                _queryParameters.Add(string.Format("dir={0}", System.Uri.EscapeDataString(Microsoft.Rest.Serialization.SafeJsonConvert.SerializeObject(dir, Client.SerializationSettings).Trim('"'))));
             }
             if (includeExtras != null)
             {

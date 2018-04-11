@@ -95,11 +95,12 @@ module Swagger
 
     #
     # @param q [String]
-    # @param unique [Enum] Possible values include: 'cards', 'art', 'prints'
-    # @param order [Enum] Possible values include: 'name', 'set', 'released',
+    # @param unique [UniqueStrategy] Possible values include: 'cards', 'art',
+    # 'prints'
+    # @param order [SortOrder] Possible values include: 'name', 'set', 'released',
     # 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
     # 'edhrec', 'artist'
-    # @param dir [Enum] Possible values include: 'auto', 'asc', 'desc'
+    # @param dir [SortDirection] Possible values include: 'auto', 'asc', 'desc'
     # @param include_extras [Boolean]
     # @param page [Integer]
     # @param custom_headers [Hash{String => String}] A hash of custom headers that
@@ -114,11 +115,12 @@ module Swagger
 
     #
     # @param q [String]
-    # @param unique [Enum] Possible values include: 'cards', 'art', 'prints'
-    # @param order [Enum] Possible values include: 'name', 'set', 'released',
+    # @param unique [UniqueStrategy] Possible values include: 'cards', 'art',
+    # 'prints'
+    # @param order [SortOrder] Possible values include: 'name', 'set', 'released',
     # 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
     # 'edhrec', 'artist'
-    # @param dir [Enum] Possible values include: 'auto', 'asc', 'desc'
+    # @param dir [SortDirection] Possible values include: 'auto', 'asc', 'desc'
     # @param include_extras [Boolean]
     # @param page [Integer]
     # @param custom_headers [Hash{String => String}] A hash of custom headers that
@@ -132,11 +134,12 @@ module Swagger
 
     #
     # @param q [String]
-    # @param unique [Enum] Possible values include: 'cards', 'art', 'prints'
-    # @param order [Enum] Possible values include: 'name', 'set', 'released',
+    # @param unique [UniqueStrategy] Possible values include: 'cards', 'art',
+    # 'prints'
+    # @param order [SortOrder] Possible values include: 'name', 'set', 'released',
     # 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
     # 'edhrec', 'artist'
-    # @param dir [Enum] Possible values include: 'auto', 'asc', 'desc'
+    # @param dir [SortDirection] Possible values include: 'auto', 'asc', 'desc'
     # @param include_extras [Boolean]
     # @param page [Integer]
     # @param [Hash{String => String}] A hash of custom headers that will be added

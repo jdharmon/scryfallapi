@@ -27,6 +27,9 @@ from .scryfall_client_enums import (
     Rarity,
     BorderColors,
     SetTypes,
+    UniqueStrategy,
+    SortOrder,
+    SortDirection,
 )
 
 __all__ = [
@@ -51,4 +54,7 @@ __all__ = [
     'Rarity',
     'BorderColors',
     'SetTypes',
+    'UniqueStrategy',
+    'SortOrder',
+    'SortDirection',
 ]

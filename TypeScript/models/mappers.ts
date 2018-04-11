@@ -1232,21 +1232,24 @@ export const CardsSearchOptionalParams = {
         required: false,
         serializedName: 'unique',
         type: {
-          name: 'String'
+          name: 'Enum',
+          allowedValues: [ 'cards', 'art', 'prints' ]
         }
       },
       order: {
         required: false,
         serializedName: 'order',
         type: {
-          name: 'String'
+          name: 'Enum',
+          allowedValues: [ 'name', 'set', 'released', 'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness', 'edhrec', 'artist' ]
         }
       },
       dir: {
         required: false,
         serializedName: 'dir',
         type: {
-          name: 'String'
+          name: 'Enum',
+          allowedValues: [ 'auto', 'asc', 'desc' ]
         }
       },
       includeExtras: {

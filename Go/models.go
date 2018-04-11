@@ -170,6 +170,74 @@ import (
         return []SetTypesEnum{SetTypesEnumArchenemy,SetTypesEnumBox,SetTypesEnumCommander,SetTypesEnumConspiracy,SetTypesEnumCore,SetTypesEnumDuelDeck,SetTypesEnumExpansion,SetTypesEnumFromTheVault,SetTypesEnumFunny,SetTypesEnumMasterpiece,SetTypesEnumMasters,SetTypesEnumMemorabilia,SetTypesEnumPlanechase,SetTypesEnumPremiumDeck,SetTypesEnumPromo,SetTypesEnumSpellbook,SetTypesEnumStarter,SetTypesEnumToken,SetTypesEnumTreasureChest,SetTypesEnumVanguard}
     }
 
+        // SortDirectionEnum enumerates the values for sort direction enum.
+    type SortDirectionEnum string
+
+    const (
+                // Asc ...
+        Asc SortDirectionEnum = "asc"
+                // Auto ...
+        Auto SortDirectionEnum = "auto"
+                // Desc ...
+        Desc SortDirectionEnum = "desc"
+            )
+    // PossibleSortDirectionEnumValues returns an array of possible values for the SortDirectionEnum const type.
+    func PossibleSortDirectionEnumValues() []SortDirectionEnum {
+        return []SortDirectionEnum{Asc,Auto,Desc}
+    }
+
+        // SortOrderEnum enumerates the values for sort order enum.
+    type SortOrderEnum string
+
+    const (
+                // Artist ...
+        Artist SortOrderEnum = "artist"
+                // Cmc ...
+        Cmc SortOrderEnum = "cmc"
+                // Color ...
+        Color SortOrderEnum = "color"
+                // Edhrec ...
+        Edhrec SortOrderEnum = "edhrec"
+                // Eur ...
+        Eur SortOrderEnum = "eur"
+                // Name ...
+        Name SortOrderEnum = "name"
+                // Power ...
+        Power SortOrderEnum = "power"
+                // Rarity ...
+        Rarity SortOrderEnum = "rarity"
+                // Released ...
+        Released SortOrderEnum = "released"
+                // Set ...
+        Set SortOrderEnum = "set"
+                // Tix ...
+        Tix SortOrderEnum = "tix"
+                // Toughness ...
+        Toughness SortOrderEnum = "toughness"
+                // Usd ...
+        Usd SortOrderEnum = "usd"
+            )
+    // PossibleSortOrderEnumValues returns an array of possible values for the SortOrderEnum const type.
+    func PossibleSortOrderEnumValues() []SortOrderEnum {
+        return []SortOrderEnum{Artist,Cmc,Color,Edhrec,Eur,Name,Power,Rarity,Released,Set,Tix,Toughness,Usd}
+    }
+
+        // UniqueStrategyEnum enumerates the values for unique strategy enum.
+    type UniqueStrategyEnum string
+
+    const (
+                // Art ...
+        Art UniqueStrategyEnum = "art"
+                // Cards ...
+        Cards UniqueStrategyEnum = "cards"
+                // Prints ...
+        Prints UniqueStrategyEnum = "prints"
+            )
+    // PossibleUniqueStrategyEnumValues returns an array of possible values for the UniqueStrategyEnum const type.
+    func PossibleUniqueStrategyEnumValues() []UniqueStrategyEnum {
+        return []UniqueStrategyEnum{Art,Cards,Prints}
+    }
+
     // CardFaceType ...
     type CardFaceType struct {
     Name *string `json:"name,omitempty"`
