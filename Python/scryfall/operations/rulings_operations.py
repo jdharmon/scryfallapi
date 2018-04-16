@@ -41,9 +41,9 @@ class RulingsOperations(object):
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: RulingList or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.RulingList or
+        :rtype: ~scryfall.models.RulingList or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
         url = self.get_by_multiverse_id.metadata['url']
@@ -92,9 +92,9 @@ class RulingsOperations(object):
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: RulingList or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.RulingList or
+        :rtype: ~scryfall.models.RulingList or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
         url = self.get_by_mtgo_id.metadata['url']
@@ -145,9 +145,9 @@ class RulingsOperations(object):
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: RulingList or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.RulingList or
+        :rtype: ~scryfall.models.RulingList or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
         url = self.get_by_code_by_number_id.metadata['url']
@@ -197,9 +197,9 @@ class RulingsOperations(object):
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: RulingList or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.RulingList or
+        :rtype: ~scryfall.models.RulingList or
          ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
         url = self.get_by_id.metadata['url']

@@ -42,15 +42,15 @@ class ScryfallClient(object):
     :vartype config: ScryfallClientConfiguration
 
     :ivar sets: Sets operations
-    :vartype sets: swagger.operations.SetsOperations
+    :vartype sets: scryfall.operations.SetsOperations
     :ivar cards: Cards operations
-    :vartype cards: swagger.operations.CardsOperations
+    :vartype cards: scryfall.operations.CardsOperations
     :ivar rulings: Rulings operations
-    :vartype rulings: swagger.operations.RulingsOperations
+    :vartype rulings: scryfall.operations.RulingsOperations
     :ivar symbology: Symbology operations
-    :vartype symbology: swagger.operations.SymbologyOperations
+    :vartype symbology: scryfall.operations.SymbologyOperations
     :ivar catalog: Catalog operations
-    :vartype catalog: swagger.operations.CatalogOperations
+    :vartype catalog: scryfall.operations.CatalogOperations
 
     :param str base_url: Service URL
     """

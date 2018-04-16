@@ -18,7 +18,7 @@ class CardList(Model):
     :param next_page:
     :type next_page: str
     :param data:
-    :type data: list[~swagger.models.Card]
+    :type data: list[~scryfall.models.Card]
     """
 
     _attribute_map = {

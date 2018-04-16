@@ -10,8 +10,8 @@ from msrest.pipeline import ClientRawResponse
 from .. import models
 
 
-class SymbologyOperations(object):
-    """SymbologyOperations operations.
+class SetsOperations(object):
+    """SetsOperations operations.
 
     :param client: Client for service requests.
     :param config: Configuration of service client.
@@ -38,10 +38,9 @@ class SymbologyOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: CardSymbolList or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.CardSymbolList or
-         ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :return: SetList or ClientRawResponse if raw=true
+        :rtype: ~scryfall.models.SetList or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
         url = self.get_all.metadata['url']
@@ -65,36 +64,39 @@ class SymbologyOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('CardSymbolList', response)
+            deserialized = self._deserialize('SetList', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    get_all.metadata = {'url': '/symbology'}
+    get_all.metadata = {'url': '/sets'}
 
-    def parse_mana(
-            self, cost, custom_headers=None, raw=False, **operation_config):
+    def get_by_code(
+            self, code, custom_headers=None, raw=False, **operation_config):
         """
 
-        :param cost:
-        :type cost: str
+        :param code:
+        :type code: str
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: ManaCost or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.ManaCost or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :return: Set or ClientRawResponse if raw=true
+        :rtype: ~scryfall.models.Set or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
-        url = self.parse_mana.metadata['url']
+        url = self.get_by_code.metadata['url']
+        path_format_arguments = {
+            'code': self._serialize.url("code", code, 'str')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['cost'] = self._serialize.query("cost", cost, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -106,17 +108,17 @@ class SymbologyOperations(object):
         request = self._client.get(url, query_parameters)
         response = self._client.send(request, header_parameters, stream=False, **operation_config)
 
-        if response.status_code not in [201]:
+        if response.status_code not in [200]:
             raise models.ErrorException(self._deserialize, response)
 
         deserialized = None
 
-        if response.status_code == 201:
-            deserialized = self._deserialize('ManaCost', response)
+        if response.status_code == 200:
+            deserialized = self._deserialize('Set', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    parse_mana.metadata = {'url': '/symbology/parse-mana'}
+    get_by_code.metadata = {'url': '/sets/{code}'}

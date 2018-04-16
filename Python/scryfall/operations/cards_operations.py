@@ -10,8 +10,8 @@ from msrest.pipeline import ClientRawResponse
 from .. import models
 
 
-class CatalogOperations(object):
-    """CatalogOperations operations.
+class CardsOperations(object):
+    """CardsOperations operations.
 
     :param client: Client for service requests.
     :param config: Configuration of service client.
@@ -29,24 +29,218 @@ class CatalogOperations(object):
 
         self.config = config
 
-    def get_card_names(
-            self, custom_headers=None, raw=False, **operation_config):
+    def get_all(
+            self, page=None, custom_headers=None, raw=False, **operation_config):
         """
 
+        :param page:
+        :type page: int
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: CardList or ClientRawResponse if raw=true
+        :rtype: ~scryfall.models.CardList or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.get_all.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+        if page is not None:
+            query_parameters['page'] = self._serialize.query("page", page, 'int')
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        deserialized = None
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('CardList', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    get_all.metadata = {'url': '/cards'}
+
+    def search(
+            self, q, unique=None, order=None, dir=None, include_extras=None, page=None, custom_headers=None, raw=False, **operation_config):
+        """
+
+        :param q:
+        :type q: str
+        :param unique: Possible values include: 'cards', 'art', 'prints'
+        :type unique: str or ~scryfall.models.UniqueStrategy
+        :param order: Possible values include: 'name', 'set', 'released',
+         'rarity', 'color', 'usd', 'tix', 'eur', 'cmc', 'power', 'toughness',
+         'edhrec', 'artist'
+        :type order: str or ~scryfall.models.SortOrder
+        :param dir: Possible values include: 'auto', 'asc', 'desc'
+        :type dir: str or ~scryfall.models.SortDirection
+        :param include_extras:
+        :type include_extras: bool
+        :param page:
+        :type page: int
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: CardList or ClientRawResponse if raw=true
+        :rtype: ~scryfall.models.CardList or
+         ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.search.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+        query_parameters['q'] = self._serialize.query("q", q, 'str')
+        if unique is not None:
+            query_parameters['unique'] = self._serialize.query("unique", unique, 'UniqueStrategy')
+        if order is not None:
+            query_parameters['order'] = self._serialize.query("order", order, 'SortOrder')
+        if dir is not None:
+            query_parameters['dir'] = self._serialize.query("dir", dir, 'SortDirection')
+        if include_extras is not None:
+            query_parameters['include_extras'] = self._serialize.query("include_extras", include_extras, 'bool')
+        if page is not None:
+            query_parameters['page'] = self._serialize.query("page", page, 'int')
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        deserialized = None
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('CardList', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    search.metadata = {'url': '/cards/search'}
+
+    def get_named(
+            self, exact=None, fuzzy=None, set=None, format=None, face=None, version=None, pretty=None, custom_headers=None, raw=False, **operation_config):
+        """
+
+        :param exact:
+        :type exact: str
+        :param fuzzy:
+        :type fuzzy: str
+        :param set:
+        :type set: str
+        :param format:
+        :type format: str
+        :param face:
+        :type face: str
+        :param version:
+        :type version: str
+        :param pretty:
+        :type pretty: bool
+        :param dict custom_headers: headers that will be added to the request
+        :param bool raw: returns the direct response alongside the
+         deserialized response
+        :param operation_config: :ref:`Operation configuration
+         overrides<msrest:optionsforoperations>`.
+        :return: Card or ClientRawResponse if raw=true
+        :rtype: ~scryfall.models.Card or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
+        """
+        # Construct URL
+        url = self.get_named.metadata['url']
+
+        # Construct parameters
+        query_parameters = {}
+        if exact is not None:
+            query_parameters['exact'] = self._serialize.query("exact", exact, 'str')
+        if fuzzy is not None:
+            query_parameters['fuzzy'] = self._serialize.query("fuzzy", fuzzy, 'str')
+        if set is not None:
+            query_parameters['set'] = self._serialize.query("set", set, 'str')
+        if format is not None:
+            query_parameters['format'] = self._serialize.query("format", format, 'str')
+        if face is not None:
+            query_parameters['face'] = self._serialize.query("face", face, 'str')
+        if version is not None:
+            query_parameters['version'] = self._serialize.query("version", version, 'str')
+        if pretty is not None:
+            query_parameters['pretty'] = self._serialize.query("pretty", pretty, 'bool')
+
+        # Construct headers
+        header_parameters = {}
+        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        if custom_headers:
+            header_parameters.update(custom_headers)
+
+        # Construct and send request
+        request = self._client.get(url, query_parameters)
+        response = self._client.send(request, header_parameters, stream=False, **operation_config)
+
+        if response.status_code not in [200]:
+            raise models.ErrorException(self._deserialize, response)
+
+        deserialized = None
+
+        if response.status_code == 200:
+            deserialized = self._deserialize('Card', response)
+
+        if raw:
+            client_raw_response = ClientRawResponse(deserialized, response)
+            return client_raw_response
+
+        return deserialized
+    get_named.metadata = {'url': '/cards/named'}
+
+    def autocomplete(
+            self, q, custom_headers=None, raw=False, **operation_config):
+        """
+
+        :param q:
+        :type q: str
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
         :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :rtype: ~scryfall.models.Catalog or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_card_names.metadata['url']
+        url = self.autocomplete.metadata['url']
 
         # Construct parameters
         query_parameters = {}
+        query_parameters['q'] = self._serialize.query("q", q, 'str')
 
         # Construct headers
         header_parameters = {}
@@ -71,9 +265,9 @@ class CatalogOperations(object):
             return client_raw_response
 
         return deserialized
-    get_card_names.metadata = {'url': '/catalog/card-names'}
+    autocomplete.metadata = {'url': '/cards/autocomplete'}
 
-    def get_word_bank(
+    def get_random(
             self, custom_headers=None, raw=False, **operation_config):
         """
 
@@ -82,12 +276,12 @@ class CatalogOperations(object):
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :return: Card or ClientRawResponse if raw=true
+        :rtype: ~scryfall.models.Card or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_word_bank.metadata['url']
+        url = self.get_random.metadata['url']
 
         # Construct parameters
         query_parameters = {}
@@ -108,30 +302,36 @@ class CatalogOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
+            deserialized = self._deserialize('Card', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    get_word_bank.metadata = {'url': '/catalog/word-bank'}
+    get_random.metadata = {'url': '/cards/random'}
 
-    def get_creature_types(
-            self, custom_headers=None, raw=False, **operation_config):
+    def get_by_multiverse_id(
+            self, id, custom_headers=None, raw=False, **operation_config):
         """
 
+        :param id:
+        :type id: int
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :return: Card or ClientRawResponse if raw=true
+        :rtype: ~scryfall.models.Card or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_creature_types.metadata['url']
+        url = self.get_by_multiverse_id.metadata['url']
+        path_format_arguments = {
+            'id': self._serialize.url("id", id, 'int')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -152,30 +352,36 @@ class CatalogOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
+            deserialized = self._deserialize('Card', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    get_creature_types.metadata = {'url': '/catalog/creature-types'}
+    get_by_multiverse_id.metadata = {'url': '/cards/multiverse/{id}'}
 
-    def get_planeswalker_types(
-            self, custom_headers=None, raw=False, **operation_config):
+    def get_by_mtgo_id(
+            self, id, custom_headers=None, raw=False, **operation_config):
         """
 
+        :param id:
+        :type id: int
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :return: Card or ClientRawResponse if raw=true
+        :rtype: ~scryfall.models.Card or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_planeswalker_types.metadata['url']
+        url = self.get_by_mtgo_id.metadata['url']
+        path_format_arguments = {
+            'id': self._serialize.url("id", id, 'int')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -196,30 +402,39 @@ class CatalogOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
+            deserialized = self._deserialize('Card', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    get_planeswalker_types.metadata = {'url': '/catalog/planeswalker-types'}
+    get_by_mtgo_id.metadata = {'url': '/cards/mtgo/{id}'}
 
-    def get_land_types(
-            self, custom_headers=None, raw=False, **operation_config):
+    def get_by_code_by_number(
+            self, code, number, custom_headers=None, raw=False, **operation_config):
         """
 
+        :param code:
+        :type code: str
+        :param number:
+        :type number: int
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :return: Card or ClientRawResponse if raw=true
+        :rtype: ~scryfall.models.Card or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_land_types.metadata['url']
+        url = self.get_by_code_by_number.metadata['url']
+        path_format_arguments = {
+            'code': self._serialize.url("code", code, 'str'),
+            'number': self._serialize.url("number", number, 'int')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -240,30 +455,36 @@ class CatalogOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
+            deserialized = self._deserialize('Card', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    get_land_types.metadata = {'url': '/catalog/land-types'}
+    get_by_code_by_number.metadata = {'url': '/cards/{code}/{number}'}
 
-    def get_artifact_types(
-            self, custom_headers=None, raw=False, **operation_config):
+    def get_by_id(
+            self, id, custom_headers=None, raw=False, **operation_config):
         """
 
+        :param id:
+        :type id: str
         :param dict custom_headers: headers that will be added to the request
         :param bool raw: returns the direct response alongside the
          deserialized response
         :param operation_config: :ref:`Operation configuration
          overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
+        :return: Card or ClientRawResponse if raw=true
+        :rtype: ~scryfall.models.Card or ~msrest.pipeline.ClientRawResponse
+        :raises: :class:`ErrorException<scryfall.models.ErrorException>`
         """
         # Construct URL
-        url = self.get_artifact_types.metadata['url']
+        url = self.get_by_id.metadata['url']
+        path_format_arguments = {
+            'id': self._serialize.url("id", id, 'str')
+        }
+        url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
@@ -284,275 +505,11 @@ class CatalogOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
+            deserialized = self._deserialize('Card', response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    get_artifact_types.metadata = {'url': '/catalog/artifact-types'}
-
-    def get_enchantment_types(
-            self, custom_headers=None, raw=False, **operation_config):
-        """
-
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
-        """
-        # Construct URL
-        url = self.get_enchantment_types.metadata['url']
-
-        # Construct parameters
-        query_parameters = {}
-
-        # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
-
-        if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
-
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
-        return deserialized
-    get_enchantment_types.metadata = {'url': '/catalog/enchantment-types'}
-
-    def get_spell_types(
-            self, custom_headers=None, raw=False, **operation_config):
-        """
-
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
-        """
-        # Construct URL
-        url = self.get_spell_types.metadata['url']
-
-        # Construct parameters
-        query_parameters = {}
-
-        # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
-
-        if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
-
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
-        return deserialized
-    get_spell_types.metadata = {'url': '/catalog/spell-types'}
-
-    def get_powers(
-            self, custom_headers=None, raw=False, **operation_config):
-        """
-
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
-        """
-        # Construct URL
-        url = self.get_powers.metadata['url']
-
-        # Construct parameters
-        query_parameters = {}
-
-        # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
-
-        if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
-
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
-        return deserialized
-    get_powers.metadata = {'url': '/catalog/powers'}
-
-    def get_toughnesses(
-            self, custom_headers=None, raw=False, **operation_config):
-        """
-
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
-        """
-        # Construct URL
-        url = self.get_toughnesses.metadata['url']
-
-        # Construct parameters
-        query_parameters = {}
-
-        # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
-
-        if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
-
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
-        return deserialized
-    get_toughnesses.metadata = {'url': '/catalog/thoughnesses'}
-
-    def get_loyalties(
-            self, custom_headers=None, raw=False, **operation_config):
-        """
-
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
-        """
-        # Construct URL
-        url = self.get_loyalties.metadata['url']
-
-        # Construct parameters
-        query_parameters = {}
-
-        # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
-
-        if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
-
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
-        return deserialized
-    get_loyalties.metadata = {'url': '/catalog/loyalties'}
-
-    def get_watermarks(
-            self, custom_headers=None, raw=False, **operation_config):
-        """
-
-        :param dict custom_headers: headers that will be added to the request
-        :param bool raw: returns the direct response alongside the
-         deserialized response
-        :param operation_config: :ref:`Operation configuration
-         overrides<msrest:optionsforoperations>`.
-        :return: Catalog or ClientRawResponse if raw=true
-        :rtype: ~swagger.models.Catalog or ~msrest.pipeline.ClientRawResponse
-        :raises: :class:`ErrorException<swagger.models.ErrorException>`
-        """
-        # Construct URL
-        url = self.get_watermarks.metadata['url']
-
-        # Construct parameters
-        query_parameters = {}
-
-        # Construct headers
-        header_parameters = {}
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
-        if custom_headers:
-            header_parameters.update(custom_headers)
-
-        # Construct and send request
-        request = self._client.get(url, query_parameters)
-        response = self._client.send(request, header_parameters, stream=False, **operation_config)
-
-        if response.status_code not in [200]:
-            raise models.ErrorException(self._deserialize, response)
-
-        deserialized = None
-
-        if response.status_code == 200:
-            deserialized = self._deserialize('Catalog', response)
-
-        if raw:
-            client_raw_response = ClientRawResponse(deserialized, response)
-            return client_raw_response
-
-        return deserialized
-    get_watermarks.metadata = {'url': '/catalog/watermarks'}
+    get_by_id.metadata = {'url': '/cards/{id}'}

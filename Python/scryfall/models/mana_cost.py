@@ -16,7 +16,7 @@ class ManaCost(Model):
     :param cmc:
     :type cmc: float
     :param colors: Possible values include: 'W', 'U', 'B', 'R', 'G'
-    :type colors: str or ~swagger.models.Colors
+    :type colors: str or ~scryfall.models.Colors
     :param colorless:
     :type colorless: bool
     :param monocolored:

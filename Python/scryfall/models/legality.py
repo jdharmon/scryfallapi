@@ -12,29 +12,29 @@ class Legality(Model):
     """Legality.
 
     :param standard: Possible values include: 'legal', 'not_legal'
-    :type standard: str or ~swagger.models.LegalStatus
+    :type standard: str or ~scryfall.models.LegalStatus
     :param future: Possible values include: 'legal', 'not_legal'
-    :type future: str or ~swagger.models.LegalStatus
+    :type future: str or ~scryfall.models.LegalStatus
     :param frontier: Possible values include: 'legal', 'not_legal'
-    :type frontier: str or ~swagger.models.LegalStatus
+    :type frontier: str or ~scryfall.models.LegalStatus
     :param modern: Possible values include: 'legal', 'not_legal'
-    :type modern: str or ~swagger.models.LegalStatus
+    :type modern: str or ~scryfall.models.LegalStatus
     :param legacy: Possible values include: 'legal', 'not_legal'
-    :type legacy: str or ~swagger.models.LegalStatus
+    :type legacy: str or ~scryfall.models.LegalStatus
     :param pauper: Possible values include: 'legal', 'not_legal'
-    :type pauper: str or ~swagger.models.LegalStatus
+    :type pauper: str or ~scryfall.models.LegalStatus
     :param vintage: Possible values include: 'legal', 'not_legal'
-    :type vintage: str or ~swagger.models.LegalStatus
+    :type vintage: str or ~scryfall.models.LegalStatus
     :param penny: Possible values include: 'legal', 'not_legal'
-    :type penny: str or ~swagger.models.LegalStatus
+    :type penny: str or ~scryfall.models.LegalStatus
     :param commander: Possible values include: 'legal', 'not_legal'
-    :type commander: str or ~swagger.models.LegalStatus
+    :type commander: str or ~scryfall.models.LegalStatus
     :param onev_one: Possible values include: 'legal', 'not_legal'
-    :type onev_one: str or ~swagger.models.LegalStatus
+    :type onev_one: str or ~scryfall.models.LegalStatus
     :param duel: Possible values include: 'legal', 'not_legal'
-    :type duel: str or ~swagger.models.LegalStatus
+    :type duel: str or ~scryfall.models.LegalStatus
     :param brawl: Possible values include: 'legal', 'not_legal'
-    :type brawl: str or ~swagger.models.LegalStatus
+    :type brawl: str or ~scryfall.models.LegalStatus
     """
 
     _attribute_map = {

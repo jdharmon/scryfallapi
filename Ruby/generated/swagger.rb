@@ -18,7 +18,7 @@ require 'concurrent'
 require 'ms_rest'
 require 'generated/swagger/module_definition'
 
-module Swagger
+module scryfall
   autoload :Sets,                                               'generated/swagger/sets.rb'
   autoload :Cards,                                              'generated/swagger/cards.rb'
   autoload :Rulings,                                            'generated/swagger/rulings.rb'

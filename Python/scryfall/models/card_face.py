@@ -20,9 +20,9 @@ class CardFace(Model):
     :param mana_cost:
     :type mana_cost: str
     :param colors: Possible values include: 'W', 'U', 'B', 'R', 'G'
-    :type colors: str or ~swagger.models.Colors
+    :type colors: str or ~scryfall.models.Colors
     :param color_indicator: Possible values include: 'W', 'U', 'B', 'R', 'G'
-    :type color_indicator: str or ~swagger.models.Colors
+    :type color_indicator: str or ~scryfall.models.Colors
     :param power:
     :type power: str
     :param toughness:
@@ -34,7 +34,7 @@ class CardFace(Model):
     :param illustration_id:
     :type illustration_id: str
     :param image_uris:
-    :type image_uris: ~swagger.models.ImageUri
+    :type image_uris: ~scryfall.models.ImageUri
     """
 
     _attribute_map = {

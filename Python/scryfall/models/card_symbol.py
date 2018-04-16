@@ -28,7 +28,7 @@ class CardSymbol(Model):
     :param funny:
     :type funny: bool
     :param colors: Possible values include: 'W', 'U', 'B', 'R', 'G'
-    :type colors: str or ~swagger.models.Colors
+    :type colors: str or ~scryfall.models.Colors
     """
 
     _attribute_map = {

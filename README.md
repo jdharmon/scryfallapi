@@ -64,6 +64,7 @@ The following are the settings for this using this API with AutoRest
 
 ``` yaml 
 input-file: swagger.yaml
+namespace: scryfall
 
 csharp:
   namespace: Scryfall.API

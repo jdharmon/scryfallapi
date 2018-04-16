@@ -34,7 +34,7 @@ class Card(Model):
     :param layout: Possible values include: 'normal', 'split', 'transform',
      'meld', 'leveler', 'saga', 'planar', 'scheme', 'vanguard', 'token',
      'double_faced_token', 'emblem', 'augment', 'host'
-    :type layout: str or ~swagger.models.Layouts
+    :type layout: str or ~scryfall.models.Layouts
     :param cmc:
     :type cmc: float
     :param type_line:
@@ -54,17 +54,17 @@ class Card(Model):
     :param hand_modifier:
     :type hand_modifier: str
     :param colors:
-    :type colors: list[str or ~swagger.models.Colors]
+    :type colors: list[str or ~scryfall.models.Colors]
     :param color_indicator:
-    :type color_indicator: list[str or ~swagger.models.Colors]
+    :type color_indicator: list[str or ~scryfall.models.Colors]
     :param color_identity:
-    :type color_identity: list[str or ~swagger.models.Colors]
+    :type color_identity: list[str or ~scryfall.models.Colors]
     :param all_parts:
-    :type all_parts: ~swagger.models.RelatedCards
+    :type all_parts: ~scryfall.models.RelatedCards
     :param card_faces:
-    :type card_faces: list[~swagger.models.CardFace]
+    :type card_faces: list[~scryfall.models.CardFace]
     :param legalities:
-    :type legalities: ~swagger.models.Legality
+    :type legalities: ~scryfall.models.Legality
     :param reserved:
     :type reserved: bool
     :param edhrec_rank:
@@ -80,7 +80,7 @@ class Card(Model):
     :param scryfall_set_uri:
     :type scryfall_set_uri: str
     :param image_uris:
-    :type image_uris: ~swagger.models.ImageUri
+    :type image_uris: ~scryfall.models.ImageUri
     :param highres_image:
     :type highres_image: bool
     :param reprint:
@@ -89,7 +89,7 @@ class Card(Model):
     :type digital: bool
     :param rarity: Possible values include: 'common', 'uncommon', 'rare',
      'mythic'
-    :type rarity: str or ~swagger.models.Rarity
+    :type rarity: str or ~scryfall.models.Rarity
     :param flavor_text:
     :type flavor_text: str
     :param artist:
@@ -104,7 +104,7 @@ class Card(Model):
     :type watermark: str
     :param border_color: Possible values include: 'black', 'borderless',
      'gold', 'silver', 'white'
-    :type border_color: str or ~swagger.models.BorderColors
+    :type border_color: str or ~scryfall.models.BorderColors
     :param story_spotlight_number:
     :type story_spotlight_number: int
     :param story_spotlight_uri:

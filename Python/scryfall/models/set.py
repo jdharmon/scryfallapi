@@ -21,7 +21,7 @@ class Set(Model):
      'masterpiece', 'from_the_vault', 'spellbook', 'premium_deck', 'duel_deck',
      'commander', 'planechase', 'conspiracy', 'archenemy', 'vanguard', 'funny',
      'starter', 'box', 'promo', 'token', 'memorabilia', 'treasure_chest'
-    :type set_type: str or ~swagger.models.SetTypes
+    :type set_type: str or ~scryfall.models.SetTypes
     :param released_at:
     :type released_at: date
     :param block_code:

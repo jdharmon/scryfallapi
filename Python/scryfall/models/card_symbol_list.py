@@ -8,17 +8,17 @@
 from msrest.serialization import Model
 
 
-class SetList(Model):
-    """SetList.
+class CardSymbolList(Model):
+    """CardSymbolList.
 
     :param data:
-    :type data: list[~swagger.models.Set]
+    :type data: list[~scryfall.models.CardSymbol]
     """
 
     _attribute_map = {
-        'data': {'key': 'data', 'type': '[Set]'},
+        'data': {'key': 'data', 'type': '[CardSymbol]'},
     }
 
     def __init__(self, data=None):
-        super(SetList, self).__init__()
+        super(CardSymbolList, self).__init__()
         self.data = data
