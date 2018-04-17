@@ -1,46 +1,19 @@
 # Scryfall API Clients
 
-OpenAPI (Swagger) and clients for [Scryfall](https://scryfall.com/docs/api), a Magic: The Gathering search engine.
+OpenAPI (Swagger) definition for [Scryfall](https://scryfall.com/docs/api), a Magic: The Gathering search engine.
 
-## Getting Started 
-Clone this repository to use the pre-generated clients.
+## Pre-generated clients
 
-### C# (.NET Core)
+You mad add these clients as submodules to your own code.
 
-1. Create a folder for your project
-
-        mkdir MyProject
-        cd MyProject
-
-2. Copy the CSharp folder from this repository to your project directory.
-
-3. Create the project, and add dependencies
-
-        dotnet new console
-        dotnet add package Microsoft.Rest.ClientRuntime --version 2.3.11
-        
-4. Open Program.cs, and add
-
-        using Scryfall.API;
-
-5. Instantiate and use ScryfallClient:
-
-        static void Main(string[] args)
-        {
-            // Instiantiate new Scryfall client
-            var scryfall = new ScryfallClient();
-
-            // Get a random card
-            var card = scryfall.Cards.GetRandom();
-            Console.WriteLine($"{card.Name}\t\t{card.ManaCost}\n");
-            Console.WriteLine($"{card.TypeLine}\n");
-            Console.WriteLine($"{card.OracleText}");
-        }
-
-6. Build & run
-
-        dotnet build
-        dotnet run
+* [C#](https://github.com/jdharmon/scryfallapi-csharp)
+* [Go](https://github.com/jdharmon/scryfallapi-go)
+* [Java](https://github.com/jdharmon/scryfallapi-java)
+* [Node.js](https://github.com/jdharmon/scryfallapi-nodejs)
+* [PHP](https://github.com/jdharmon/scryfallapi-php)
+* [Python](https://github.com/jdharmon/scryfallapi-python)
+* [Ruby](https://github.com/jdharmon/scryfallapi-ruby)
+* [TypeScript](https://github.com/jdharmon/scryfallapi-typescript)
 
 ## Generating Clients
 
@@ -49,11 +22,15 @@ To generate your own clients
 1. Install AutoRest via `npm` (`npm install -g autorest`)
 2. Run:
 
-        autorest README.md
+```sh
+autorest README.md
+```
 
 You may also run AutoRest in Docker by running:
 
-        docker run --rm -w /var/autorest -v $(PWD):/var/autorest azuresdk/autorest
+```sh
+docker run --rm -w /var/autorest -v ${PWD}:/var/autorest azuresdk/autorest
+```
 
 ---
 

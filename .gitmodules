@@ -1,0 +1,24 @@
+[submodule "Go"]
+	path = Go
+	url = https://github.com/jdharmon/scryfallapi-go.git
+[submodule "CSharp"]
+	path = CSharp
+	url = https://github.com/jdharmon/scryfallapi-csharp.git
+[submodule "Java"]
+	path = Java
+	url = https://github.com/jdharmon/scryfallapi-java
+[submodule "NodeJS"]
+	path = NodeJS
+	url = https://github.com/jdharmon/scryfallapi-nodejs.git
+[submodule "PHP"]
+	path = PHP
+	url = https://github.com/jdharmon/scryfallapi-php.git
+[submodule "Python"]
+	path = Python
+	url = https://github.com/jdharmon/scryfallapi-python.git
+[submodule "Ruby"]
+	path = Ruby
+	url = https://github.com/jdharmon/scryfallapi-ruby.git
+[submodule "TypeScript"]
+	path = TypeScript
+	url = https://github.com/jdharmon/scryfallapi-typescript.git
