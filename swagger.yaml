@@ -832,7 +832,9 @@ definitions:
       mana_cost:
         type: string
       colors:
-        $ref: '#/definitions/colors'
+        type: array
+        items:
+          $ref: '#/definitions/colors'
       color_indicator:
         $ref: '#/definitions/colors'
       power:
