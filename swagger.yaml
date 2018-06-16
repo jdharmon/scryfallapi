@@ -272,6 +272,28 @@ paths:
           description: Error
           schema:
             $ref: '#/definitions/error'
+  '/cards/arena/{id}':
+    get:
+      tags:
+        - Cards
+      operationId: Cards_GetByArenaId
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/card'
+        default:
+          description: Error
+          schema:
+            $ref: '#/definitions/error'
   '/cards/{code}/{number}':
     get:
       tags:
@@ -667,6 +689,8 @@ definitions:
         items:
           type: integer
       mtgo_id:
+        type: integer
+      arena_id:
         type: integer
       mtgo_foil_id:
         type: integer
