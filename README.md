@@ -4,7 +4,7 @@ OpenAPI (Swagger) definition for [Scryfall](https://scryfall.com/docs/api), a Ma
 
 ## Pre-generated clients
 
-You mad add these clients as submodules to your own code.
+You may add these clients as submodules to your own code.
 
 * [C#](https://github.com/jdharmon/scryfallapi-csharp)
 * [Go](https://github.com/jdharmon/scryfallapi-go)
