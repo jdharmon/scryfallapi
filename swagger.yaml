@@ -712,6 +712,7 @@ definitions:
         enum:
           - normal
           - split
+          - flip
           - transform
           - meld
           - leveler
@@ -760,7 +761,9 @@ definitions:
         items:
           $ref: '#/definitions/colors'
       all_parts:
-        $ref: '#/definitions/related_cards'
+        type: array
+        items:
+          $ref: '#/definitions/related_cards'
       card_faces:
         type: array
         items:
@@ -860,7 +863,9 @@ definitions:
         items:
           $ref: '#/definitions/colors'
       color_indicator:
-        $ref: '#/definitions/colors'
+        type: array
+        items:
+          $ref: '#/definitions/colors'
       power:
         type: string
       toughness:
@@ -916,6 +921,8 @@ definitions:
     enum:
       - legal
       - not_legal
+      - restricted
+      - banned
     type: string
     x-ms-enum:
       name: legal_status
