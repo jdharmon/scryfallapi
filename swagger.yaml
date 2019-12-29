@@ -717,6 +717,7 @@ definitions:
           - meld
           - leveler
           - saga
+          - adventure
           - planar
           - scheme
           - vanguard
@@ -725,6 +726,8 @@ definitions:
           - emblem
           - augment
           - host
+          - art_series
+          - double_sided
         type: string
         x-ms-enum:
           name: layouts
