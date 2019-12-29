@@ -895,7 +895,9 @@ definitions:
         $ref: '#/definitions/legal_status'
       future:
         $ref: '#/definitions/legal_status'
-      frontier:
+      historic:
+        $ref: '#/definitions/legal_status'
+      pioneer:
         $ref: '#/definitions/legal_status'
       modern:
         $ref: '#/definitions/legal_status'
@@ -909,11 +911,11 @@ definitions:
         $ref: '#/definitions/legal_status'
       commander:
         $ref: '#/definitions/legal_status'
-      1v1:
+      brawl:
         $ref: '#/definitions/legal_status'
       duel:
         $ref: '#/definitions/legal_status'
-      brawl:
+      oldschool:
         $ref: '#/definitions/legal_status'
   legal_status:
     enum:
