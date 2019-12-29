@@ -833,12 +833,6 @@ definitions:
       story_spotlight_uri:
         format: uri
         type: string
-      timeshifted:
-        type: boolean
-      colorshifted:
-        type: boolean
-      futureshifted:
-        type: boolean
       purchase_uris:
         type: object
         additionalProperties:
