@@ -51,28 +51,6 @@ paths:
   # Cards
   # https://scryfall.com/docs/api/cards
   #############################################
-  /cards:
-    get:
-      tags:
-       - Cards
-      operationId: Cards_GetAll
-      produces:
-        - application/json
-      parameters:
-        - name: page
-          in: query
-          required: false
-          type: integer
-          format: int32
-      responses:
-        '200':
-          description: Success
-          schema:
-            $ref: '#/definitions/card_list'
-        default:
-          description: Error
-          schema:
-            $ref: '#/definitions/error'
   /cards/search:
     get:
       tags:
