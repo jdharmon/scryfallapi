@@ -717,6 +717,7 @@ definitions:
           - modal_dfc
           - meld
           - leveler
+          - class
           - saga
           - adventure
           - planar
