@@ -946,9 +946,13 @@ definitions:
       - compasslanddfc
       - originpwdfc
       - mooneldrazidfc
-      - moonreversemoondfc
+      - waxingandwaningmoondfc
       - showcase
       - extendedart
+      - companion
+      - etched
+      - snow
+      - lesson
     type: string
     x-ms-enum:
       name: frame_effect
