@@ -953,6 +953,10 @@ definitions:
       - etched
       - snow
       - lesson
+      - shatteredglass
+      - convertdfc
+      - fandfc
+      - upsidedowndfc
     type: string
     x-ms-enum:
       name: frame_effect
