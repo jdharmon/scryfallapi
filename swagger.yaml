@@ -720,6 +720,9 @@ definitions:
           - class
           - saga
           - adventure
+          - mutate
+          - prototype
+          - battle
           - planar
           - scheme
           - vanguard
@@ -729,7 +732,7 @@ definitions:
           - augment
           - host
           - art_series
-          - double_sided
+          - reversible_card
         type: string
         x-ms-enum:
           name: layouts
