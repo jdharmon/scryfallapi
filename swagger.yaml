@@ -733,6 +733,7 @@ definitions:
           - host
           - art_series
           - reversible_card
+          - case
         type: string
         x-ms-enum:
           name: layouts
